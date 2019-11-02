@@ -9,10 +9,10 @@ import { Package } from '../../types/Package';
 })
 export class NpmDependencyManagerService {
 
-  private pkgToPkgDeps: Map<Package, DependencyTree[]>;
+  private pkgToPkgDepsCache: Map<Package, DependencyTree[]>;
 
   constructor(private depRetrieverService: NpmDependencyRetrieverService) {
-    this.pkgToPkgDeps = new Map();
+    this.pkgToPkgDepsCache = new Map();
   }
 
 
@@ -25,20 +25,20 @@ export class NpmDependencyManagerService {
     root.package = pkg;
     let obsArray$ = [];
     return new Observable((observer$) => {
-      if (this.pkgToPkgDeps.get(pkg)) {
-        root.dependencies = this.pkgToPkgDeps.get(pkg);
+      if (this.pkgToPkgDepsCache.get(pkg)) {
+        root.dependencies = this.pkgToPkgDepsCache.get(pkg);
         observer$.next(root);
         observer$.complete();
       }
       this.depRetrieverService.getPackageDependecies(pkg).subscribe((pkgDependencies: Package[]) => {
         if (pkgDependencies.length === 0) {
-          this.pkgToPkgDeps.set(pkg, root.dependencies);
+          this.pkgToPkgDepsCache.set(pkg, root.dependencies);
           observer$.next(root);
           observer$.complete();
         }
         this.iterateDependenciesAndCallRecursively(pkgDependencies, obsArray$, root);
         forkJoin(obsArray$).subscribe(() => {
-          this.pkgToPkgDeps.set(pkg, root.dependencies);
+          this.pkgToPkgDepsCache.set(pkg, root.dependencies);
           observer$.next(root);
           observer$.complete();
         });
@@ -55,7 +55,7 @@ export class NpmDependencyManagerService {
         root.dependencies = [];
       }
       const depsLength: number = root.dependencies.push(newDepTree);
-      const obs$:  Observable<DependencyTree> = this.getPackageDependenciesRecursively(pkgDependecy, root.dependencies[depsLength - 1]);
+      const obs$: Observable<DependencyTree> = this.getPackageDependenciesRecursively(pkgDependecy, root.dependencies[depsLength - 1]);
       promisesArr.push(obs$);
     }
   }

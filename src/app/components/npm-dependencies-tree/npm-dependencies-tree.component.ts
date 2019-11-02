@@ -3,6 +3,7 @@ import { TreeChartComponent } from '../tree-chart/tree-chart.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NpmDependencyManagerService } from 'src/app/services/npm-dependency-manager/npm-dependency-manager.service';
 import { Package } from 'src/app/types/Package';
+import { DependencyTree } from 'src/app/types/dependencyTree';
 
 @Component({
   selector: 'app-dependencies-tree',
@@ -12,7 +13,7 @@ import { Package } from 'src/app/types/Package';
 export class DependenciesTreeComponent implements OnInit {
   public isLoading: boolean;
 
-  @ViewChild(TreeChartComponent, { static: false }) treeChart: TreeChartComponent;
+  @ViewChild(TreeChartComponent, { static: false }) treeChartComponent: TreeChartComponent;
 
   public treeData: any;
   constructor(private depManager: NpmDependencyManagerService,
@@ -27,9 +28,11 @@ export class DependenciesTreeComponent implements OnInit {
     this.depRetriever.getPackageLatestVersion(pkgName).subscribe((pkgVersion: string) => {
       let pkg: Package = new Package(pkgName, pkgVersion);
       this.isLoading = true;
-      this.depManager.getPackageDependencies(pkg).subscribe((treeData) => {
+      this.depManager.getPackageDependencies(pkg).subscribe((treeData: DependencyTree) => {
         this.isLoading = false;
-        this.treeChart.buildTree(treeData);
+        this.treeChartComponent.buildTree(treeData);
+      }, () => {
+        this.isLoading = false;
       });
     });
   }

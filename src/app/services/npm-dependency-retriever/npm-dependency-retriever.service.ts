@@ -61,21 +61,25 @@ export class NpmDependencyRetrieverService {
             observer$.next(this.parsePackageDependencies(dependenciesObject));
             observer$.complete();
           } catch (e) {
-            this.handleError(e);
+            const errMsg = this.handleError(e);
+            observer$.error(errMsg);
+            observer$.complete();
           }
 
         }, (err) => {
           if (err.error && err.error.code === ErrorCodes.METHOD_NOT_ALLOWED) {
-            //this means that the packge could not be found
-            observer$.next(this.parsePackageDependencies([]));
+            //this means that the packge version could not be found.
+            //empty package dependencies is returned because we want to show
+            //the package itself, even if it doesn't exist in the registry
+            observer$.next([]);
             observer$.complete();
           } else {
-            this.handleError(err);
+            const errMsg = this.handleError(err);
+            observer$.error(errMsg);
+            observer$.complete();
           }
         });
     });
-
-
   }
 
   private parsePackageDependencies(dependenciesObject: Object): Package[] {
@@ -105,10 +109,8 @@ export class NpmDependencyRetrieverService {
       } else if ((error.error === 'Not Found') || (error.error.error && error.error.error.toLocaleLowerCase() === 'not found')) {
         errorMessage = `package ${error.url.split('/')[3]} not found!`;
       } else {
-        // server-side error
         errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
       }
-
     } else {
       errorMessage = ` Failed to parse results from API`;
     }

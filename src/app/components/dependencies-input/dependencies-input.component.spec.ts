@@ -42,7 +42,6 @@ describe('DependenciesInputComponent', () => {
     });
 
     it('should not emit when the control is not valid ', () => {
-      let pkgNameInputValue: string = 'file-system';
       component.InputsForm.controls.packageName.setValue(undefined);
       spyOn(component.onSubmitEvent, 'emit');
       component.onGetPackageDependenciesClick();

@@ -79,29 +79,29 @@ describe('DependenciesTreeComponent', () => {
     it('should call build tree after getting latest version and dependencies', inject(
       [NpmDependencyManagerService, NpmDependencyRetrieverService],
       (depManager: NpmDependencyManagerService, depRetriever: NpmDependencyRetrieverService) => {
-      const depTree = createDummyDependencyTree();
-      const pkgName: string = 'file-system';
-      const pkgVersion: string = '2.0.1';
-      spyOn(depRetriever, 'getPackageLatestVersion').and.returnValue(of(pkgVersion));
-      spyOn(depManager, 'getPackageDependencies').and.returnValue(of(depTree));
-      spyOn(component.treeChart, 'buildTree');
-      component.getPackageDependencies(pkgName);
-      const pkg: Package = new Package(pkgName, pkgVersion);
-      expect(depManager.getPackageDependencies).toHaveBeenCalledWith(pkg);
-      expect(component.treeChart.buildTree).toHaveBeenCalledWith(depTree);
-    }));
+        const depTree = createDummyDependencyTree();
+        const pkgName: string = 'file-system';
+        const pkgVersion: string = '2.0.1';
+        spyOn(depRetriever, 'getPackageLatestVersion').and.returnValue(of(pkgVersion));
+        spyOn(depManager, 'getPackageDependencies').and.returnValue(of(depTree));
+        spyOn(component.treeChartComponent, 'buildTree');
+        component.getPackageDependencies(pkgName);
+        const pkg: Package = new Package(pkgName, pkgVersion);
+        expect(depManager.getPackageDependencies).toHaveBeenCalledWith(pkg);
+        expect(component.treeChartComponent.buildTree).toHaveBeenCalledWith(depTree);
+      }));
 
 
     it('should not call build tree when failed to get package latest version', inject(
       [NpmDependencyManagerService, NpmDependencyRetrieverService],
       (depManager: NpmDependencyManagerService, depRetriever: NpmDependencyRetrieverService) => {
-      const pkgName: string = 'file-system';
-      spyOn(depRetriever, 'getPackageLatestVersion').and.returnValue(throwError('error'));
-      spyOn(depManager, 'getPackageDependencies')
-      spyOn(component.treeChart, 'buildTree');
-      component.getPackageDependencies(pkgName);
-      expect(depManager.getPackageDependencies).not.toHaveBeenCalled();
-      expect(component.treeChart.buildTree).not.toHaveBeenCalled();
-    }));
+        const pkgName: string = 'file-system';
+        spyOn(depRetriever, 'getPackageLatestVersion').and.returnValue(throwError('error'));
+        spyOn(depManager, 'getPackageDependencies');
+        spyOn(component.treeChartComponent, 'buildTree');
+        component.getPackageDependencies(pkgName);
+        expect(depManager.getPackageDependencies).not.toHaveBeenCalled();
+        expect(component.treeChartComponent.buildTree).not.toHaveBeenCalled();
+      }));
   });
 });

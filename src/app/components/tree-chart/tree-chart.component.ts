@@ -14,13 +14,11 @@ export class TreeChartComponent implements OnInit {
 
   @Input() loading: boolean;
 
-  private margin = { top: 45, right: 50, bottom: 70, left: 65 };
+  private margin = { top: 10, right: 50, bottom: 40, left: 100 };
   private width: number;
   private height: number;
 
   private element;
-
-
 
   constructor() {
     //
@@ -28,16 +26,16 @@ export class TreeChartComponent implements OnInit {
 
   ngOnInit() {
 
-    this.width = this.chartContainer.nativeElement.offsetWidth - this.margin.left - this.margin.right;
-    this.height = this.chartContainer.nativeElement.offsetHeight - this.margin.top - this.margin.bottom;
+    this.width = this.chartContainer.nativeElement.offsetWidth;
+    this.height = this.chartContainer.nativeElement.offsetHeight;
     this.element = this.chartContainer.nativeElement;
   }
 
   public buildTree(treeData) {
     d3.select('svg').remove();
     let svg = d3.select(this.element).append('svg')
-      .attr('width', this.element.offsetWidth)
-      .attr('height', this.element.offsetHeight - 100)
+      .attr('width', this.width)
+      .attr('height', this.height)
       .append('g')
       .attr('transform', 'translate('
         + this.margin.left + ',' + this.margin.top + ')');
@@ -45,19 +43,13 @@ export class TreeChartComponent implements OnInit {
 
 
     // declares a tree layout and assigns the size
-    let treeMap = d3.tree().size([this.height, this.width]);
+    let treeMap = d3.tree().size([this.height - this.margin.top - this.margin.bottom, this.width - this.margin.left - this.margin.right]);
 
     // Assigns parent, children, height, depth
     let root, i = 0, duration;
     root = d3.hierarchy(treeData, function (d) { return d.dependencies; });
     root.x0 = this.height / 2;
     root.y0 = 0;
-    let colorScale = d3.scaleLinear()
-      .domain([0, 1])
-      .range(['red', 'green']);
-    let widthScale = d3.scaleLinear()
-      .domain([1, 80])
-      .range([1, 10]);
     update(root);
 
     function update(source) {
@@ -89,11 +81,10 @@ export class TreeChartComponent implements OnInit {
       // Add Circle for the nodes
       nodeEnter.append('circle')
         .attr('class', 'node')
-        .attr('r', 1e-6)
+        .attr('r', 1e-15)
         .style('fill', function (d) {
           return d._children ? 'lightsteelblue' : '#fff';
-        })
-        .style('stroke', function (d) { return colorScale(d.data.female / (d.data.female + d.data.male)); });
+        });
 
       // Add labels for the nodes
       nodeEnter.append('text')
@@ -104,9 +95,7 @@ export class TreeChartComponent implements OnInit {
         .attr('text-anchor', function (d) {
           return d.children || d._children ? 'end' : 'start';
         })
-        .text(function (d) { return d.data.package.name + ' ' + d.data.package.version; })
-        .style('fill', function (d) { return colorScale(d.data.female / (d.data.value)); });
-
+        .text(function (d) { return d.data.package.name + ' ' + d.data.package.version; });
       // UPDATE
       var nodeUpdate = nodeEnter.merge(node);
 
@@ -119,7 +108,7 @@ export class TreeChartComponent implements OnInit {
 
       // Update the node attributes and style
       nodeUpdate.select('circle.node')
-        .attr('r', 10)
+        .attr('r', 1)
         .style('fill', function (d) {
           return d._children ? 'lightsteelblue' : '#fff';
         })
@@ -146,10 +135,7 @@ export class TreeChartComponent implements OnInit {
 
       // Update the links...
       var link = svg.selectAll('path.link')
-        .data(links, function (d) { return d.id; })
-        .style('stroke-width', function (d) {
-          return widthScale(d.data.value);
-        });
+        .data(links, function (d) { return d.id; });
 
       // Enter any new links at the parent's previous position.
       var linkEnter = link.enter().insert('path', 'g')
@@ -157,9 +143,6 @@ export class TreeChartComponent implements OnInit {
         .attr('d', function (d) {
           var o = { x: source.x0, y: source.y0 };
           return diagonal(o, o);
-        })
-        .style('stroke-width', function (d) {
-          return widthScale(d.data.value);
         });
 
       // UPDATE
@@ -176,11 +159,7 @@ export class TreeChartComponent implements OnInit {
         .attr('d', function (d) {
           var o = { x: source.x, y: source.y };
           return diagonal(o, o);
-        })
-        .style('stroke-width', function (d) {
-          return widthScale(d.data.value);
-        })
-        .remove();
+        }).remove();
 
       // Store the old positions for transition.
       nodes.forEach(function (d) {
@@ -210,8 +189,6 @@ export class TreeChartComponent implements OnInit {
         }
         update(d);
       }
-
     }
-
   }
 }

@@ -10,7 +10,10 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class DependenciesInputComponent implements OnInit {
 
-  public readonly fieldIsRequired = 'Field is required.';
+  public readonly fieldIsRequiredMsg: string = 'Field is required.';
+  public readonly packageNameMsg: string = 'Package Name';
+
+  public getPkgDependenciesMsg: string = 'Get Dependencies';
   @Output() onSubmitEvent = new EventEmitter<Package>();
   InputsForm = new FormGroup({});
   constructor(private formBuilder: FormBuilder) {

@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { NpmDependencyRetrieverService } from './npm-dependency-retriever.service';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { Package } from 'src/app/types/Package';
+import { ErrorCodes } from 'src/app/enums/errorCodes';
 
 const ToastrStub = {
   error(msg): void { //
@@ -13,7 +14,7 @@ describe('DependencyRetrieverService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+      imports: [HttpClientTestingModule],
       providers: [NpmDependencyRetrieverService,
         { provide: ToastrService, useValue: ToastrStub }]
     });
@@ -51,7 +52,7 @@ describe('DependencyRetrieverService', () => {
     it('should show toaster error when the package not found', inject(
       [HttpTestingController, NpmDependencyRetrieverService, ToastrService],
       (httpMock: HttpTestingController, dataService: NpmDependencyRetrieverService, toastrService: ToastrService) => {
-        const pkgNotFoundServerRespone = { 'error': 'Not Found' };
+        const pkgNotFoundServerResponse = { 'error': 'Not Found' };
         const clientErrorMsg = 'package file-system not found!';
         spyOn(toastrService, 'error');
         dataService.getPackageLatestVersion('file-system').subscribe((pkgVersion: string) => {
@@ -59,10 +60,10 @@ describe('DependencyRetrieverService', () => {
         }, (error) => {
           expect(error).toEqual(clientErrorMsg);
         });
-        const mockErrorResponse = { status: 400, statusText: 'Bad Request' };
+        const mockErrorResponse = { status: 404, statusText: 'OK' };
         const mockReq = httpMock.expectOne(`https://registry.npmjs.org/file-system`);
 
-        mockReq.flush(pkgNotFoundServerRespone, mockErrorResponse);
+        mockReq.flush(pkgNotFoundServerResponse, mockErrorResponse);
         expect(toastrService.error).toHaveBeenCalledWith(clientErrorMsg, 'Error', Object({ timeOut: 200000 }));
 
       }));
@@ -118,6 +119,49 @@ describe('DependencyRetrieverService', () => {
         const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
         expect(mockReq.request.method).toBe('GET');
         mockReq.flush(dummyResponse);
+      }));
+
+    it('should return empty deps with no error when the package dependencies is not found', inject(
+      [HttpTestingController, NpmDependencyRetrieverService, ToastrService],
+      (httpMock: HttpTestingController, dataService: NpmDependencyRetrieverService, toastrService: ToastrService) => {
+        const pkg = new Package('testPkg', '1.0');
+        spyOn(toastrService, 'error');
+        dataService.getPackageDependecies(pkg).subscribe((pkgDeps: Package[]) => {
+          expect(pkgDeps.length).toBe(0);
+
+        }, () => {
+          expect(true).toBe(false);
+        });
+        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
+        const mockErrorResponse = { status: 404, statusText: 'OK' };
+        expect(mockReq.request.method).toBe('GET');
+        const pkgNotFoundServerResponse = {
+          'code': ErrorCodes.METHOD_NOT_ALLOWED
+        };
+        mockReq.flush(pkgNotFoundServerResponse, mockErrorResponse);
+      }));
+
+    it('should show toaster error when there is request Timeout', inject(
+      [HttpTestingController, NpmDependencyRetrieverService, ToastrService],
+      (httpMock: HttpTestingController, dataService: NpmDependencyRetrieverService, toastrService: ToastrService) => {
+        const pkg = new Package('testPkg', '1.0');
+        spyOn(toastrService, 'error');
+        dataService.getPackageDependecies(pkg).subscribe((pkgDeps: Package[]) => {
+
+          expect(true).toBe(false);
+        }, (err) => {
+          expect(err).toContain('Error Code: 404');
+        });
+        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
+        const mockErrorResponse = { status: 404, statusText: 'OK' };
+        expect(mockReq.request.method).toBe('GET');
+        const pkgNotFoundServerResponse = {
+          'name': ErrorCodes.REQUEST_TIMEOUT
+        };
+        mockReq.flush(pkgNotFoundServerResponse, mockErrorResponse);
+        const clientErrorMsg = 'package file-system not found!';
+        expect(toastrService.error).toHaveBeenCalled();
+
       }));
   });
 
