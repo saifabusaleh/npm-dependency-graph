@@ -26,7 +26,7 @@ describe('DependencyRetrieverService', () => {
   });
 
   describe('getPackageLatestVersion', () => {
-    const mockVersionsListResponse = () => {
+    const mockVersionsResponse = () => {
       let dummyVersionsResponse = {};
       (dummyVersionsResponse as any).versions = {};
       (dummyVersionsResponse as any).versions['1.0'] = { 'name': 'val' };
@@ -38,15 +38,15 @@ describe('DependencyRetrieverService', () => {
     it('should call the correct url and get the latest version', inject(
       [HttpTestingController, NpmDependencyRetrieverService],
       (httpMock: HttpTestingController, dataService: NpmDependencyRetrieverService) => {
-        let dummyResponse = mockVersionsListResponse();
-
+        const mockVersions = mockVersionsResponse();
+        const expectedVersion = Object.keys((mockVersions as any).versions)[Object.keys((mockVersions as any).versions).length - 1];
         dataService.getPackageLatestVersion('file-system').subscribe((pkgVersion: string) => {
 
-          expect(pkgVersion).toBe('2.0');
+          expect(pkgVersion).toBe(expectedVersion);
         });
         const mockReq = httpMock.expectOne(`https://registry.npmjs.org/file-system`);
         expect(mockReq.request.method).toBe('GET');
-        mockReq.flush(dummyResponse);
+        mockReq.flush(mockVersions);
       }));
 
     it('should show toaster error when the package not found', inject(
@@ -74,18 +74,17 @@ describe('DependencyRetrieverService', () => {
   });
 
   describe('getPackageDependecies', () => {
-    const dummyResponse1 = {
+    const simpleDependenciesResponse = {
       'dependencies': {
         'file-match': '1.0.1',
       }
     };
-    const dummyResponse = {
+    const dependenciesResponse = {
       'dependencies': {
         'file-match': '^1.0.1',
         'utils-extend': '=2.0',
         'fs': '>5.0',
         'mocha': '~ 2.2.0',
-        //       'baz': '>1.0.2 <=2.3.4'
       }
     };
     it('should call the correct url and get the dependencies', inject(
@@ -99,7 +98,7 @@ describe('DependencyRetrieverService', () => {
         });
         const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
         expect(mockReq.request.method).toBe('GET');
-        mockReq.flush(dummyResponse1);
+        mockReq.flush(simpleDependenciesResponse);
       }));
 
     it('should strip > = < ~ ^ from package dependencies versions', inject(
@@ -107,7 +106,7 @@ describe('DependencyRetrieverService', () => {
       (httpMock: HttpTestingController, dataService: NpmDependencyRetrieverService) => {
         const pkg = new Package('testPkg', '1.0');
         dataService.getPackageDependecies(pkg).subscribe((pkgDeps: Package[]) => {
-          Object.keys(dummyResponse.dependencies).forEach((pkgName: string, i) => {
+          Object.keys(dependenciesResponse.dependencies).forEach((pkgName: string, i) => {
             expect(pkgName).toEqual(pkgDeps[i].name);
           });
           expect(pkgDeps[0].version).toEqual('1.0.1');
@@ -118,7 +117,7 @@ describe('DependencyRetrieverService', () => {
         });
         const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
         expect(mockReq.request.method).toBe('GET');
-        mockReq.flush(dummyResponse);
+        mockReq.flush(dependenciesResponse);
       }));
 
     it('should return empty deps with no error when the package dependencies is not found', inject(
@@ -159,9 +158,11 @@ describe('DependencyRetrieverService', () => {
           'name': ErrorCodes.REQUEST_TIMEOUT
         };
         mockReq.flush(pkgNotFoundServerResponse, mockErrorResponse);
-        const clientErrorMsg = 'package file-system not found!';
         expect(toastrService.error).toHaveBeenCalled();
 
+      }));
+      afterEach(inject([HttpTestingController], (httpMock: HttpTestingController) => {
+        httpMock.verify();
       }));
   });
 
