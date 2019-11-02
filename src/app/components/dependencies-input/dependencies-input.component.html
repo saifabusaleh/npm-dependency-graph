@@ -1,0 +1,12 @@
+<form [formGroup]="InputsForm">
+    <div class="container">
+        <mat-form-field>
+            <input matInput formControlName="packageName" placeholder="Package Name">
+            <mat-error *ngIf="!InputsForm.controls['packageName'].valid">
+                    {{fieldIsRequired}}
+            </mat-error>
+        </mat-form-field>
+        <button type="button" (click)="onGetPackageDependenciesClick()" mat-button color="primary">Get Package Dependencies</button>
+
+    </div>
+</form>
