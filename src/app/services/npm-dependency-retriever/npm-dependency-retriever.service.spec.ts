@@ -44,7 +44,7 @@ describe('DependencyRetrieverService', () => {
 
           expect(pkgVersion).toBe(expectedVersion);
         });
-        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/file-system`);
+        const mockReq = httpMock.expectOne(`http://registry.npmjs.org/file-system`);
         expect(mockReq.request.method).toBe('GET');
         mockReq.flush(mockVersions);
       }));
@@ -61,7 +61,7 @@ describe('DependencyRetrieverService', () => {
           expect(error).toEqual(clientErrorMsg);
         });
         const mockErrorResponse = { status: 404, statusText: 'OK' };
-        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/file-system`);
+        const mockReq = httpMock.expectOne(`http://registry.npmjs.org/file-system`);
 
         mockReq.flush(pkgNotFoundServerResponse, mockErrorResponse);
         expect(toastrService.error).toHaveBeenCalledWith(clientErrorMsg, 'Error', Object({ timeOut: 200000 }));
@@ -96,7 +96,7 @@ describe('DependencyRetrieverService', () => {
           expect(pkgDeps[0].name).toEqual('file-match');
           expect(pkgDeps[0].version).toEqual('1.0.1');
         });
-        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
+        const mockReq = httpMock.expectOne(`http://registry.npmjs.org/testPkg/1.0`);
         expect(mockReq.request.method).toBe('GET');
         mockReq.flush(simpleDependenciesResponse);
       }));
@@ -115,7 +115,7 @@ describe('DependencyRetrieverService', () => {
           expect(pkgDeps[3].version).toEqual('2.2.0');
 
         });
-        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
+        const mockReq = httpMock.expectOne(`http://registry.npmjs.org/testPkg/1.0`);
         expect(mockReq.request.method).toBe('GET');
         mockReq.flush(dependenciesResponse);
       }));
@@ -131,7 +131,7 @@ describe('DependencyRetrieverService', () => {
         }, () => {
           expect(true).toBe(false);
         });
-        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
+        const mockReq = httpMock.expectOne(`http://registry.npmjs.org/testPkg/1.0`);
         const mockErrorResponse = { status: 404, statusText: 'OK' };
         expect(mockReq.request.method).toBe('GET');
         const pkgNotFoundServerResponse = {
@@ -151,7 +151,7 @@ describe('DependencyRetrieverService', () => {
         }, (err) => {
           expect(err).toContain('Error Code: 404');
         });
-        const mockReq = httpMock.expectOne(`https://registry.npmjs.org/testPkg/1.0`);
+        const mockReq = httpMock.expectOne(`http://registry.npmjs.org/testPkg/1.0`);
         const mockErrorResponse = { status: 404, statusText: 'OK' };
         expect(mockReq.request.method).toBe('GET');
         const pkgNotFoundServerResponse = {

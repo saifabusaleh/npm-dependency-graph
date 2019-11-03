@@ -11,7 +11,7 @@ import { ErrorCodes } from '../../enums/errorCodes';
 })
 export class NpmDependencyRetrieverService {
 
-  private readonly REGISTRY_BASE_URL: string = 'https://registry.npmjs.org/';
+  private readonly REGISTRY_BASE_URL: string = 'http://registry.npmjs.org/';
 
   private readonly MINUTE_IN_MILLISECOND = 60000;
   constructor(private httpClient: HttpClient,
