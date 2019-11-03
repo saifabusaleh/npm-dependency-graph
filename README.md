@@ -11,7 +11,7 @@ Project to show npm package dependencies with D3 tree.
 * Toaster notification when there is an error(package not found, package name and version not found).
 * Collapsible tree nodes on click. 
 * Cache is used to cache package version and dependencies, if in another call 
-the dependency is found, its returned from the cache 
+the dependency is found, its returned from the cache.
 
 **Notes**:
 * For simplicity if the package version that fetched from the server contains (>,<,~,=) characters, it got deleted.
