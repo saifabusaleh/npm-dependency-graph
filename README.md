@@ -1,13 +1,13 @@
 # Npm Package Depedencies Visualization
 
-Demo: https://serene-tor-26385.herokuapp.com/
+Demo: http://serene-tor-26385.herokuapp.com/
 
 Project to show npm package dependencies with D3 tree.
 
 **Getting Started**:
  * To start the project run `npm run start:dev`
  * To run the tests run `npm run test`
- 
+
 **Features**:
 * Visualize npm package dependencies with tree.
 * Input form validations.
