@@ -4,6 +4,8 @@ Demo:
 
 Project to show npm package dependencies with D3 tree.
 
+**Getting Started**:
+ * To start the project run `npm run start:dev`
 **Features**:
 * Visualize npm package dependencies with tree.
 * Input form validations.
