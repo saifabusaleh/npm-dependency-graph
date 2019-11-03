@@ -9,40 +9,43 @@ import { Package } from '../../types/Package';
 })
 export class NpmDependencyManagerService {
 
-  private pkgToPkgDepsCache: Map<string, DependencyTree[]>;
+  private _pkgToPkgDepsCache: Map<string, DependencyTree[]>;
 
   constructor(private depRetrieverService: NpmDependencyRetrieverService) {
-    this.pkgToPkgDepsCache = new Map();
+    this._pkgToPkgDepsCache = new Map();
   }
 
+
+  public get pkgToPkgDepsCache() {
+    return this._pkgToPkgDepsCache;
+  }
 
   public getPackageDependencies(pkg: Package): Observable<DependencyTree> {
     let depTree: DependencyTree = new DependencyTree();
-    return this.getPackageDependenciesRecursively(pkg, depTree, this.pkgToPkgDepsCache);
+    return this.getPackageDependenciesRecursively(pkg, depTree);
   }
 
-  public getPackageDependenciesRecursively(pkg: Package, root: DependencyTree,
-    pkgToPkgDepsCache: Map<string, DependencyTree[]>): Observable<DependencyTree> {
+  private getPackageDependenciesRecursively(pkg: Package, root: DependencyTree): Observable<DependencyTree> {
     root.package = pkg;
     if (!root.dependencies) {
       root.dependencies = [];
     }
     let obsArray$ = [];
     return new Observable((observer$) => {
-      if (pkgToPkgDepsCache.get(pkg.name + pkg.version)) {
-        root.dependencies = pkgToPkgDepsCache.get(pkg.name + pkg.version);
+      if (this._pkgToPkgDepsCache.get(pkg.name + pkg.version)) {
+        root.dependencies = this._pkgToPkgDepsCache.get(pkg.name + pkg.version);
         observer$.next(root);
         observer$.complete();
       } else {
         this.depRetrieverService.getPackageDependecies(pkg).subscribe((pkgDependencies: Package[]) => {
           if (pkgDependencies.length === 0) {
-            pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
+            this._pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
             observer$.next(root);
             observer$.complete();
           } else {
             this.iterateDependenciesAndCallRecursively(pkgDependencies, obsArray$, root);
             forkJoin(obsArray$).subscribe(() => {
-              pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
+              this._pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
               observer$.next(root);
               observer$.complete();
             });
@@ -58,7 +61,7 @@ export class NpmDependencyManagerService {
     for (const pkgDependecy of pkgDependencies) {
       let newDepTree: DependencyTree = new DependencyTree();
       const depsLength: number = root.dependencies.push(newDepTree);
-      const obs$: Observable<DependencyTree> = this.getPackageDependenciesRecursively(pkgDependecy, root.dependencies[depsLength - 1], this.pkgToPkgDepsCache);
+      const obs$: Observable<DependencyTree> = this.getPackageDependenciesRecursively(pkgDependecy, root.dependencies[depsLength - 1]);
       promisesArr.push(obs$);
     }
   }

@@ -38,16 +38,12 @@ export class NpmDependencyRetrieverService {
             const latestVersion: string = Object.keys(versionsObj)[Object.keys(versionsObj).length - 1];
             observer$.next(latestVersion);
             observer$.complete();
-          } catch (e) {
-            const errMsg = this.handleError(e);
-            observer$.error(errMsg);
-            observer$.complete();
+          } catch (err) {
+            this.throwErrorWrapper(err, observer$);
           }
 
         }, (err) => {
-          const errMsg = this.handleError(err);
-          observer$.error(errMsg);
-          observer$.complete();
+          this.throwErrorWrapper(err, observer$);
         });
     });
   }
@@ -60,10 +56,8 @@ export class NpmDependencyRetrieverService {
           try {
             observer$.next(this.parsePackageDependencies(dependenciesObject));
             observer$.complete();
-          } catch (e) {
-            const errMsg = this.handleError(e);
-            observer$.error(errMsg);
-            observer$.complete();
+          } catch (err) {
+            this.throwErrorWrapper(err, observer$);
           }
 
         }, (err) => {
@@ -74,9 +68,7 @@ export class NpmDependencyRetrieverService {
             observer$.next([]);
             observer$.complete();
           } else {
-            const errMsg = this.handleError(err);
-            observer$.error(errMsg);
-            observer$.complete();
+            this.throwErrorWrapper(err, observer$);
           }
         });
     });
@@ -115,6 +107,12 @@ export class NpmDependencyRetrieverService {
       errorMessage = ` Failed to parse results from API`;
     }
     return errorMessage;
+  }
+
+  private throwErrorWrapper(err, observer$) {
+    const errMsg = this.handleError(err);
+    observer$.error(errMsg);
+    observer$.complete();
   }
 
   private handleError(error) {

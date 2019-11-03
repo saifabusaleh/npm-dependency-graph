@@ -44,6 +44,6 @@ describe('AppComponent', () => {
   it(`should have as title 'dependency-graph-project'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('dependency Graph Project');
+    expect(app.title).toEqual('Dependency Graph Project');
   });
 });
