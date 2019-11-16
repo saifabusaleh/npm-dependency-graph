@@ -1,5 +1,4 @@
-import { NpmDependencyRetrieverService } from './../../services/npm-dependency-retriever/npm-dependency-retriever.service';
-import { NpmDependencyManagerService } from './../../services/npm-dependency-manager/npm-dependency-manager.service';
+import { HttpService } from '../../services/http-service/http.service';
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { DependenciesTreeComponent } from './npm-dependencies-tree.component';
@@ -10,7 +9,7 @@ import { MatInputModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { of, throwError } from 'rxjs';
+import { throwError, of } from 'rxjs';
 import { Package } from 'src/app/types/Package';
 import { DependencyTree } from 'src/app/types/dependencyTree';
 
@@ -19,13 +18,8 @@ const ToastrStub = {
   }
 };
 
-const DepManagerStub = {
-  getPackageDependencies(pkg): void { //
-  }
-};
-
-const DepRetrieverStub = {
-  getPackageLatestVersion(pkgName): void { //
+const HttpServiceStub = {
+  getPackageDependecies(pkg): void { //
   }
 };
 
@@ -45,8 +39,7 @@ describe('DependenciesTreeComponent', () => {
         TreeChartComponent],
       providers: [
         { provide: ToastrService, useValue: ToastrStub },
-        { provide: NpmDependencyManagerService, useValue: DepManagerStub },
-        { provide: NpmDependencyRetrieverService, useValue: DepRetrieverStub }
+        { provide: HttpService, useValue: HttpServiceStub }
       ]
     })
       .compileComponents();
@@ -76,31 +69,26 @@ describe('DependenciesTreeComponent', () => {
       return dummyDepTree;
     };
 
-    it('should call build tree after getting latest version and dependencies', inject(
-      [NpmDependencyManagerService, NpmDependencyRetrieverService],
-      (depManager: NpmDependencyManagerService, depRetriever: NpmDependencyRetrieverService) => {
+    it('should call build tree after getting package dependencies', inject(
+      [HttpService],
+      (httpService: HttpService) => {
         const depTree = createDummyDependencyTree();
         const pkgName: string = 'file-system';
-        const pkgVersion: string = '2.0.1';
-        spyOn(depRetriever, 'getPackageLatestVersion').and.returnValue(of(pkgVersion));
-        spyOn(depManager, 'getPackageDependencies').and.returnValue(of(depTree));
         spyOn(component.treeChartComponent, 'buildTree');
+        spyOn(httpService, 'getPackageDependecies').and.returnValue(of(depTree));
         component.getPackageDependencies(pkgName);
-        const pkg: Package = new Package(pkgName, pkgVersion);
-        expect(depManager.getPackageDependencies).toHaveBeenCalledWith(pkg);
+        expect(httpService.getPackageDependecies).toHaveBeenCalledWith(pkgName);
         expect(component.treeChartComponent.buildTree).toHaveBeenCalledWith(depTree);
       }));
 
 
-    it('should not call build tree when failed to get package latest version', inject(
-      [NpmDependencyManagerService, NpmDependencyRetrieverService],
-      (depManager: NpmDependencyManagerService, depRetriever: NpmDependencyRetrieverService) => {
+    it('should not call build tree when failed to get package', inject(
+      [HttpService],
+      (httpService: HttpService) => {
         const pkgName: string = 'file-system';
-        spyOn(depRetriever, 'getPackageLatestVersion').and.returnValue(throwError('error'));
-        spyOn(depManager, 'getPackageDependencies');
+        spyOn(httpService, 'getPackageDependecies').and.returnValue(throwError('error'));
         spyOn(component.treeChartComponent, 'buildTree');
         component.getPackageDependencies(pkgName);
-        expect(depManager.getPackageDependencies).not.toHaveBeenCalled();
         expect(component.treeChartComponent.buildTree).not.toHaveBeenCalled();
       }));
   });
