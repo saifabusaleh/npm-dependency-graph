@@ -34,4 +34,4 @@ Images:
 <img src="images/3.PNG" alt="img3" height="200">
 
 
-This project was developed with Angular 8.
+This project was developed with Angular 8 + Node.js
