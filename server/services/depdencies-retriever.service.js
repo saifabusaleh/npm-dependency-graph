@@ -1,6 +1,6 @@
 const axios = require("axios");
 const Package = require("../model/Package");
-const ErrorCodes = require("../enums/errorCodes");
+const ErrorCodes = require("../enums/ErrorResponses");
 
 const REGISTRY_BASE_URL = "http://registry.npmjs.org/";
 
@@ -42,10 +42,9 @@ function parsePackageDependencies(dependenciesObject) {
 		return [];
 	}
 	const pkgDependencies = [];
-	Object.keys(dependenciesObject).map((key) => {
+	Object.keys(dependenciesObject).forEach((key) => {
 		const pkg = new Package(key, parsePackageVersion(dependenciesObject[key]));
 		pkgDependencies.push(pkg);
-		return true;
 	});
 	return pkgDependencies;
 }
@@ -69,8 +68,8 @@ async function getPackageDependencies(pkg) {
 	const requestUrl = buildRequestUrl(pkg);
 	let pkgDeps;
 	try {
-		const res = await axios.get(requestUrl);
-		pkgDeps = parsePackageDependencies(res.data.dependencies);
+		const axiosRes = await axios.get(requestUrl);
+		pkgDeps = parsePackageDependencies(axiosRes.data.dependencies);
 	} catch (err) {
 		if (err.response && err.response.data && err.response.data.code
 			&& err.response.data.code === ErrorCodes.METHOD_NOT_ALLOWED) {
