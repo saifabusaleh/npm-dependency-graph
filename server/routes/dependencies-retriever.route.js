@@ -6,7 +6,7 @@ const DependencyRetrieverController = require( "../controllers/dependency-retrie
 
 
 dependenciesRetrieverRoute.route( "/" ).get( ( req, res ) => {
-	res.send( "<h1>Server rootss</h1>" );
+	res.send( "<h1>Server root</h1>" );
 } );
 
 dependenciesRetrieverRoute.route( "/npm-depency-retriever/:pkgName" ).get(
