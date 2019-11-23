@@ -1,22 +1,22 @@
+/* eslint-disable no-use-before-define */
 const DependencyTree = require("../model/DependencyTree");
 const depRetrieverService = require("./depdencies-retriever.service");
 const Package = require("../model/Package");
 
-const pkgToPkgDepsCache = new Map();
 
-function iterateDependenciesAndCallRecursively(pkgDependencies,
-	promisesArr, root) {
+function iterateOverDependenciesAndCallRecursively(pkgDependencies,
+	promisesArr, root, pkgToPkgDepsCache) {
 	pkgDependencies.forEach((pkgDependecy) => {
 		const newDepTree = new DependencyTree();
 		const depsLength = root.dependencies.push(newDepTree);
 		// eslint-disable-next-line no-use-before-define
 		const promise = getPackageDependenciesRecursively(pkgDependecy,
-			root.dependencies[depsLength - 1]);
+			root.dependencies[depsLength - 1], pkgToPkgDepsCache);
 		promisesArr.push(promise);
 	});
 }
 
-async function getPackageDependenciesRecursively(pkg, root) {
+async function getPackageDependenciesRecursively(pkg, root, pkgToPkgDepsCache) {
 	root.package = pkg;
 	if (!root.dependencies) {
 		root.dependencies = [];
@@ -28,12 +28,13 @@ async function getPackageDependenciesRecursively(pkg, root) {
 			root.dependencies = pkgToPkgDepsCache.get(pkg.name + pkg.version);
 			resolve(root);
 		} else {
-			const pkgDependencies = await depRetrieverService.getPackageDependencies(pkg);
+			const pkgDependencies = await depRetrieverService.retrievePackageDependencies(pkg);
 			if (pkgDependencies.length === 0) {
 				pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
 				resolve(root);
 			} else {
-				iterateDependenciesAndCallRecursively(pkgDependencies, promisesArr, root);
+				iterateOverDependenciesAndCallRecursively(pkgDependencies, promisesArr,
+					root, pkgToPkgDepsCache);
 				await Promise.all(promisesArr);
 				pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
 				resolve(root);
@@ -44,9 +45,12 @@ async function getPackageDependenciesRecursively(pkg, root) {
 
 
 async function getPackageDependencies(pkgName) {
-	const pkgVersion = await depRetrieverService.getPackageLatestVersion(pkgName);
+	const pkgVersion = await depRetrieverService.retrievePackageLatestVersion(pkgName);
 	const pkg = new Package(pkgName, pkgVersion);
 	const depTree = new DependencyTree();
-	return getPackageDependenciesRecursively(pkg, depTree);
+	const pkgToPkgDepsCache = new Map();
+	const pkgDeps = await getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
+	return pkgDeps;
 }
 module.exports.getPackageDependencies = getPackageDependencies;
+module.exports.getPackageDependenciesRecursively = getPackageDependenciesRecursively;
