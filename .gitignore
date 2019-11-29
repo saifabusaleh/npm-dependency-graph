@@ -1,2 +1,4 @@
-.git
+node_modules
+.env
+.eslintrc.js
 .vscode
