@@ -14,8 +14,8 @@ app.use( "/api", dependenciesRetrieverRoute );
 
 
 const { PORT } = process.env;
-app.use(express.static(path.join(__dirname, "client/dist/dependency-graph-project")));
-const indexPath = path.join(__dirname, "client/dist/dependency-graph-project/index.html");
+app.use(express.static(path.join(__dirname, "public")));
+const indexPath = path.join(__dirname, "public/index.html");
 console.log("index_path ", indexPath);
 app.get("/*", (req, res) => {
 	res.sendFile(indexPath);
