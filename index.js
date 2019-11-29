@@ -10,14 +10,14 @@ const dependenciesRetrieverRoute = require( "./routes/dependencies-retriever.rou
 
 app.use( cors() );
 app.use( bodyParser.json() );
-app.use(express.static(path.join(__dirname, "client/dist/dependency-graph-project")));
 app.use( "/api", dependenciesRetrieverRoute );
 
 
 const { PORT } = process.env;
+app.use(express.static(path.join(__dirname, "client/dist/dependency-graph-project")));
 const indexPath = path.join(__dirname, "client/dist/dependency-graph-project/index.html");
 console.log("index_path ", indexPath);
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
 	res.sendFile(indexPath);
 });
 app.listen( PORT, () => {
