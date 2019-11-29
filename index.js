@@ -15,9 +15,10 @@ app.use( "/api", dependenciesRetrieverRoute );
 
 
 const { PORT } = process.env;
-
+const indexPath = path.join(__dirname, "client/dist/dependency-graph-project/index.html");
+console.log("index_path ", indexPath);
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "client/dist/dependency-graph-project/index.html"));
+	res.sendFile(indexPath);
 });
 app.listen( PORT, () => {
 	console.log( `Server running on port ${PORT}` );
