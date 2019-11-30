@@ -8,9 +8,12 @@ not allowing the website requests)
 Project to show npm package dependencies graph with D3 tree.
 
 **Getting Started**:
- * To start the project run `npm run start:dev`
- * To run the tests run `npm run test`
-
+ * To start the client side run `npm run start:dev`
+ * To run the tests in client side run `npm run test`
+ 
+ * To start the server side run `npm run watch`
+ * To run the tests in server side run `npm run jest`
+ 
 **Features**:
 * Visualize npm package dependencies with tree.
 * Input form validations.
@@ -21,7 +24,7 @@ Project to show npm package dependencies graph with D3 tree.
 the dependency is found, its returned from the cache.
 
 **Notes**:
-* For simplicity if the package version that fetched from the server contains (>,<,~,=) characters, it got deleted.
+* For simplicity if the package version that fetched from the npm registry contains (>,<,~,=) characters, it got deleted.
 
 * If a package contains both > and <, or | or - it will not work.
 
