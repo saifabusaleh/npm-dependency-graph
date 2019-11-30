@@ -15,10 +15,8 @@ app.use( "/api", dependenciesRetrieverRoute );
 
 const { PORT } = process.env;
 app.use(express.static(path.join(__dirname, "public")));
-const indexPath = path.join(__dirname, "public/index.html");
-console.log("index_path ", indexPath);
 app.get("/*", (req, res) => {
-	res.sendFile(indexPath);
+	res.sendFile(path.join(__dirname, "public/index.html"));
 });
 app.listen( PORT, () => {
 	console.log( `Server running on port ${PORT}` );
