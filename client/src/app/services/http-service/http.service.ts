@@ -11,7 +11,7 @@ import { DependencyTree } from 'src/app/types/dependencyTree';
 })
 export class HttpService {
 
-  private readonly BASE_URL: string = 'http://localhost:4444/api/npm-depency-retriever/';
+  private readonly BASE_URL: string = 'api/npm-depency-retriever/';
 
   private readonly MINUTE_IN_MILLISECOND = 60000;
   constructor(private httpClient: HttpClient,
