@@ -798,7 +798,7 @@ let HttpService = class HttpService {
     constructor(httpClient, toaster) {
         this.httpClient = httpClient;
         this.toaster = toaster;
-        this.BASE_URL = 'http://localhost:4444/api/npm-depency-retriever/';
+        this.BASE_URL = 'api/npm-depency-retriever/';
         this.MINUTE_IN_MILLISECOND = 60000;
     }
     buildRequestUrl(pkg) {
