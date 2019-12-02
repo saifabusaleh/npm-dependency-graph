@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div #chart id=\"chart\"></div>\r\n<img src=\"https://loading.io/spinners/balls/index.circle-slack-loading-icon.gif\" *ngIf=\"loading\" class=\"loadingSpinner\">\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div #chart id=\"chart\"></div>\r\n<img src=\"https://mir-s3-cdn-cf.behance.net/project_modules/disp/f1055231234507.564a1d234bfb6.gif\" *ngIf=\"loading\" class=\"loadingSpinner\">\r\n");
 
 /***/ }),
 
@@ -380,7 +380,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("#chartContainer {\n  height: inherit;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hcHAvQzpcXGRlcGVuZGVjeS1ncmFwaFxcZGVwZW5kZW5jeS1ncmFwaC1wcm9qZWN0L3NyY1xcYXBwXFxjb21wb25lbnRzXFxhcHBcXGFwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2NoYXJ0Q29udGFpbmVyIHtcclxuICAgIGhlaWdodDogaW5oZXJpdDtcclxuICB9IiwiI2NoYXJ0Q29udGFpbmVyIHtcbiAgaGVpZ2h0OiBpbmhlcml0O1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("#chartContainer {\n  height: inherit;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hcHAvQzpcXGRlcGVuZGVjeS1ncmFwaFxcZGVwZW5kZW5jeS1ncmFwaC1wcm9qZWN0XFxjbGllbnQvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjY2hhcnRDb250YWluZXIge1xyXG4gICAgaGVpZ2h0OiBpbmhlcml0O1xyXG4gIH0iLCIjY2hhcnRDb250YWluZXIge1xuICBoZWlnaHQ6IGluaGVyaXQ7XG59Il19 */");
 
 /***/ }),
 
@@ -428,7 +428,7 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".container {\n  margin-left: 25px;\n  margin-top: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9kZXBlbmRlbmNpZXMtaW5wdXQvQzpcXGRlcGVuZGVjeS1ncmFwaFxcZGVwZW5kZW5jeS1ncmFwaC1wcm9qZWN0L3NyY1xcYXBwXFxjb21wb25lbnRzXFxkZXBlbmRlbmNpZXMtaW5wdXRcXGRlcGVuZGVuY2llcy1pbnB1dC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9kZXBlbmRlbmNpZXMtaW5wdXQvZGVwZW5kZW5jaWVzLWlucHV0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7RUFDQSxnQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9kZXBlbmRlbmNpZXMtaW5wdXQvZGVwZW5kZW5jaWVzLWlucHV0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lciB7XHJcbiAgICBtYXJnaW4tbGVmdDogMjVweDtcclxuICAgIG1hcmdpbi10b3A6IDIwcHg7XHJcbn0iLCIuY29udGFpbmVyIHtcbiAgbWFyZ2luLWxlZnQ6IDI1cHg7XG4gIG1hcmdpbi10b3A6IDIwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".container {\n  margin-left: 25px;\n  margin-top: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9kZXBlbmRlbmNpZXMtaW5wdXQvQzpcXGRlcGVuZGVjeS1ncmFwaFxcZGVwZW5kZW5jeS1ncmFwaC1wcm9qZWN0XFxjbGllbnQvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGRlcGVuZGVuY2llcy1pbnB1dFxcZGVwZW5kZW5jaWVzLWlucHV0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL2RlcGVuZGVuY2llcy1pbnB1dC9kZXBlbmRlbmNpZXMtaW5wdXQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxpQkFBQTtFQUNBLGdCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2RlcGVuZGVuY2llcy1pbnB1dC9kZXBlbmRlbmNpZXMtaW5wdXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyIHtcclxuICAgIG1hcmdpbi1sZWZ0OiAyNXB4O1xyXG4gICAgbWFyZ2luLXRvcDogMjBweDtcclxufSIsIi5jb250YWluZXIge1xuICBtYXJnaW4tbGVmdDogMjVweDtcbiAgbWFyZ2luLXRvcDogMjBweDtcbn0iXX0= */");
 
 /***/ }),
 
@@ -517,41 +517,32 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DependenciesTreeComponent", function() { return DependenciesTreeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _services_npm_dependency_retriever_npm_dependency_retriever_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../services/npm-dependency-retriever/npm-dependency-retriever.service */ "./src/app/services/npm-dependency-retriever/npm-dependency-retriever.service.ts");
+/* harmony import */ var _services_http_service_http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/http-service/http.service */ "./src/app/services/http-service/http.service.ts");
 /* harmony import */ var _tree_chart_tree_chart_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tree-chart/tree-chart.component */ "./src/app/components/tree-chart/tree-chart.component.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var src_app_services_npm_dependency_manager_npm_dependency_manager_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/npm-dependency-manager/npm-dependency-manager.service */ "./src/app/services/npm-dependency-manager/npm-dependency-manager.service.ts");
-/* harmony import */ var src_app_types_Package__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/types/Package */ "./src/app/types/Package.ts");
-
-
 
 
 
 
 let DependenciesTreeComponent = class DependenciesTreeComponent {
-    constructor(depManager, depRetriever) {
-        this.depManager = depManager;
-        this.depRetriever = depRetriever;
+    constructor(httpService) {
+        this.httpService = httpService;
     }
     ngOnInit() {
         //
     }
     getPackageDependencies(pkgName) {
-        this.depRetriever.getPackageLatestVersion(pkgName).subscribe((pkgVersion) => {
-            let pkg = new src_app_types_Package__WEBPACK_IMPORTED_MODULE_5__["Package"](pkgName, pkgVersion);
-            this.isLoading = true;
-            this.depManager.getPackageDependencies(pkg).subscribe((treeData) => {
-                this.isLoading = false;
-                this.treeChartComponent.buildTree(treeData);
-            }, () => {
-                this.isLoading = false;
-            });
+        this.isLoading = true;
+        this.httpService.getPackageDependecies(pkgName).subscribe((treeData) => {
+            this.isLoading = false;
+            this.treeChartComponent.buildTree(treeData);
+        }, () => {
+            this.isLoading = false;
         });
     }
 };
 DependenciesTreeComponent.ctorParameters = () => [
-    { type: src_app_services_npm_dependency_manager_npm_dependency_manager_service__WEBPACK_IMPORTED_MODULE_4__["NpmDependencyManagerService"] },
-    { type: _services_npm_dependency_retriever_npm_dependency_retriever_service__WEBPACK_IMPORTED_MODULE_1__["NpmDependencyRetrieverService"] }
+    { type: _services_http_service_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ViewChild"])(_tree_chart_tree_chart_component__WEBPACK_IMPORTED_MODULE_2__["TreeChartComponent"], { static: false })
@@ -577,7 +568,7 @@ DependenciesTreeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("#chart {\n  height: 100%;\n  width: inherit;\n}\n\n.node circle {\n  fill: #fff;\n  stroke: steelblue;\n  stroke-width: 3px;\n}\n\n.node text {\n  font: 11px sans-serif;\n}\n\n.link {\n  fill: none;\n  stroke: #ccc;\n  stroke-width: 2px;\n}\n\n.loadingSpinner {\n  position: fixed;\n  top: 25%;\n  left: 25%;\n  width: 100px;\n  height: 100px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy90cmVlLWNoYXJ0L0M6XFxkZXBlbmRlY3ktZ3JhcGhcXGRlcGVuZGVuY3ktZ3JhcGgtcHJvamVjdC9zcmNcXGFwcFxcY29tcG9uZW50c1xcdHJlZS1jaGFydFxcdHJlZS1jaGFydC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy90cmVlLWNoYXJ0L3RyZWUtY2hhcnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxZQUFBO0VBQ0EsY0FBQTtBQ0NKOztBREdFO0VBQ0UsVUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7QUNBSjs7QURHRTtFQUNFLHFCQUFBO0FDQUo7O0FER0U7RUFDRSxVQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0FDQUo7O0FER0U7RUFDRSxlQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy90cmVlLWNoYXJ0L3RyZWUtY2hhcnQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjY2hhcnQge1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgd2lkdGg6IGluaGVyaXQ7XHJcbiAgfVxyXG5cclxuXHJcbiAgLm5vZGUgY2lyY2xlIHtcclxuICAgIGZpbGw6ICNmZmY7XHJcbiAgICBzdHJva2U6IHN0ZWVsYmx1ZTtcclxuICAgIHN0cm9rZS13aWR0aDogM3B4O1xyXG4gIH1cclxuICBcclxuICAubm9kZSB0ZXh0IHtcclxuICAgIGZvbnQ6IDExcHggc2Fucy1zZXJpZjtcclxuICB9XHJcbiAgXHJcbiAgLmxpbmsge1xyXG4gICAgZmlsbDogbm9uZTtcclxuICAgIHN0cm9rZTogI2NjYztcclxuICAgIHN0cm9rZS13aWR0aDogMnB4O1xyXG4gIH1cclxuICBcclxuICAubG9hZGluZ1NwaW5uZXIge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOiAyNSU7XHJcbiAgICBsZWZ0OiAyNSU7XHJcbiAgICB3aWR0aDogMTAwcHg7XHJcbiAgICBoZWlnaHQ6IDEwMHB4O1xyXG4gIH0iLCIjY2hhcnQge1xuICBoZWlnaHQ6IDEwMCU7XG4gIHdpZHRoOiBpbmhlcml0O1xufVxuXG4ubm9kZSBjaXJjbGUge1xuICBmaWxsOiAjZmZmO1xuICBzdHJva2U6IHN0ZWVsYmx1ZTtcbiAgc3Ryb2tlLXdpZHRoOiAzcHg7XG59XG5cbi5ub2RlIHRleHQge1xuICBmb250OiAxMXB4IHNhbnMtc2VyaWY7XG59XG5cbi5saW5rIHtcbiAgZmlsbDogbm9uZTtcbiAgc3Ryb2tlOiAjY2NjO1xuICBzdHJva2Utd2lkdGg6IDJweDtcbn1cblxuLmxvYWRpbmdTcGlubmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6IDI1JTtcbiAgbGVmdDogMjUlO1xuICB3aWR0aDogMTAwcHg7XG4gIGhlaWdodDogMTAwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("#chart {\n  height: 100%;\n  width: inherit;\n}\n\n.node circle {\n  fill: #fff;\n  stroke: steelblue;\n  stroke-width: 3px;\n}\n\n.node text {\n  font: 11px sans-serif;\n}\n\n.link {\n  fill: none;\n  stroke: #ccc;\n  stroke-width: 2px;\n}\n\n.loadingSpinner {\n  position: fixed;\n  top: 40%;\n  left: 25%;\n  width: 80px;\n  height: 80px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy90cmVlLWNoYXJ0L0M6XFxkZXBlbmRlY3ktZ3JhcGhcXGRlcGVuZGVuY3ktZ3JhcGgtcHJvamVjdFxcY2xpZW50L3NyY1xcYXBwXFxjb21wb25lbnRzXFx0cmVlLWNoYXJ0XFx0cmVlLWNoYXJ0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL3RyZWUtY2hhcnQvdHJlZS1jaGFydC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7RUFDQSxjQUFBO0FDQ0o7O0FER0U7RUFDRSxVQUFBO0VBQ0EsaUJBQUE7RUFDQSxpQkFBQTtBQ0FKOztBREdFO0VBQ0UscUJBQUE7QUNBSjs7QURHRTtFQUNFLFVBQUE7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7QUNBSjs7QURHRTtFQUNFLGVBQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3RyZWUtY2hhcnQvdHJlZS1jaGFydC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNjaGFydCB7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICB3aWR0aDogaW5oZXJpdDtcclxuICB9XHJcblxyXG5cclxuICAubm9kZSBjaXJjbGUge1xyXG4gICAgZmlsbDogI2ZmZjtcclxuICAgIHN0cm9rZTogc3RlZWxibHVlO1xyXG4gICAgc3Ryb2tlLXdpZHRoOiAzcHg7XHJcbiAgfVxyXG4gIFxyXG4gIC5ub2RlIHRleHQge1xyXG4gICAgZm9udDogMTFweCBzYW5zLXNlcmlmO1xyXG4gIH1cclxuICBcclxuICAubGluayB7XHJcbiAgICBmaWxsOiBub25lO1xyXG4gICAgc3Ryb2tlOiAjY2NjO1xyXG4gICAgc3Ryb2tlLXdpZHRoOiAycHg7XHJcbiAgfVxyXG4gIFxyXG4gIC5sb2FkaW5nU3Bpbm5lciB7XHJcbiAgICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgICB0b3A6IDQwJTtcclxuICAgIGxlZnQ6IDI1JTtcclxuICAgIHdpZHRoOiA4MHB4O1xyXG4gICAgaGVpZ2h0OiA4MHB4O1xyXG4gIH0iLCIjY2hhcnQge1xuICBoZWlnaHQ6IDEwMCU7XG4gIHdpZHRoOiBpbmhlcml0O1xufVxuXG4ubm9kZSBjaXJjbGUge1xuICBmaWxsOiAjZmZmO1xuICBzdHJva2U6IHN0ZWVsYmx1ZTtcbiAgc3Ryb2tlLXdpZHRoOiAzcHg7XG59XG5cbi5ub2RlIHRleHQge1xuICBmb250OiAxMXB4IHNhbnMtc2VyaWY7XG59XG5cbi5saW5rIHtcbiAgZmlsbDogbm9uZTtcbiAgc3Ryb2tlOiAjY2NjO1xuICBzdHJva2Utd2lkdGg6IDJweDtcbn1cblxuLmxvYWRpbmdTcGlubmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6IDQwJTtcbiAgbGVmdDogMjUlO1xuICB3aWR0aDogODBweDtcbiAgaGVpZ2h0OiA4MHB4O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -771,116 +762,30 @@ __webpack_require__.r(__webpack_exports__);
 
 var ErrorCodes;
 (function (ErrorCodes) {
-    ErrorCodes["REQUEST_TIMEOUT"] = "TimeoutError";
-    ErrorCodes["METHOD_NOT_ALLOWED"] = "MethodNotAllowedError";
+    ErrorCodes[ErrorCodes["NO_RESPONSE"] = 0] = "NO_RESPONSE";
 })(ErrorCodes || (ErrorCodes = {}));
 
 
 /***/ }),
 
-/***/ "./src/app/services/npm-dependency-manager/npm-dependency-manager.service.ts":
-/*!***********************************************************************************!*\
-  !*** ./src/app/services/npm-dependency-manager/npm-dependency-manager.service.ts ***!
-  \***********************************************************************************/
-/*! exports provided: NpmDependencyManagerService */
+/***/ "./src/app/services/http-service/http.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/services/http-service/http.service.ts ***!
+  \*******************************************************/
+/*! exports provided: HttpService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NpmDependencyManagerService", function() { return NpmDependencyManagerService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var _types_dependencyTree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../types/dependencyTree */ "./src/app/types/dependencyTree.ts");
-/* harmony import */ var _npm_dependency_retriever_npm_dependency_retriever_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../npm-dependency-retriever/npm-dependency-retriever.service */ "./src/app/services/npm-dependency-retriever/npm-dependency-retriever.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-
-
-
-let NpmDependencyManagerService = class NpmDependencyManagerService {
-    constructor(depRetrieverService) {
-        this.depRetrieverService = depRetrieverService;
-        this._pkgToPkgDepsCache = new Map();
-    }
-    get pkgToPkgDepsCache() {
-        return this._pkgToPkgDepsCache;
-    }
-    getPackageDependencies(pkg) {
-        let depTree = new _types_dependencyTree__WEBPACK_IMPORTED_MODULE_2__["DependencyTree"]();
-        return this.getPackageDependenciesRecursively(pkg, depTree);
-    }
-    getPackageDependenciesRecursively(pkg, root) {
-        root.package = pkg;
-        if (!root.dependencies) {
-            root.dependencies = [];
-        }
-        let obsArray$ = [];
-        return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer$) => {
-            if (this._pkgToPkgDepsCache.get(pkg.name + pkg.version)) {
-                root.dependencies = this._pkgToPkgDepsCache.get(pkg.name + pkg.version);
-                observer$.next(root);
-                observer$.complete();
-            }
-            else {
-                this.depRetrieverService.getPackageDependecies(pkg).subscribe((pkgDependencies) => {
-                    if (pkgDependencies.length === 0) {
-                        this._pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
-                        observer$.next(root);
-                        observer$.complete();
-                    }
-                    else {
-                        this.iterateDependenciesAndCallRecursively(pkgDependencies, obsArray$, root);
-                        Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(obsArray$).subscribe(() => {
-                            this._pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
-                            observer$.next(root);
-                            observer$.complete();
-                        });
-                    }
-                });
-            }
-        });
-    }
-    iterateDependenciesAndCallRecursively(pkgDependencies, promisesArr, root) {
-        for (const pkgDependecy of pkgDependencies) {
-            let newDepTree = new _types_dependencyTree__WEBPACK_IMPORTED_MODULE_2__["DependencyTree"]();
-            const depsLength = root.dependencies.push(newDepTree);
-            const obs$ = this.getPackageDependenciesRecursively(pkgDependecy, root.dependencies[depsLength - 1]);
-            promisesArr.push(obs$);
-        }
-    }
-};
-NpmDependencyManagerService.ctorParameters = () => [
-    { type: _npm_dependency_retriever_npm_dependency_retriever_service__WEBPACK_IMPORTED_MODULE_3__["NpmDependencyRetrieverService"] }
-];
-NpmDependencyManagerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Injectable"])({
-        providedIn: 'root'
-    })
-], NpmDependencyManagerService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/npm-dependency-retriever/npm-dependency-retriever.service.ts":
-/*!***************************************************************************************!*\
-  !*** ./src/app/services/npm-dependency-retriever/npm-dependency-retriever.service.ts ***!
-  \***************************************************************************************/
-/*! exports provided: NpmDependencyRetrieverService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NpmDependencyRetrieverService", function() { return NpmDependencyRetrieverService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _types_Package__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../types/Package */ "./src/app/types/Package.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
-/* harmony import */ var _enums_errorCodes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../enums/errorCodes */ "./src/app/enums/errorCodes.ts");
+/* harmony import */ var _enums_errorCodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../enums/errorCodes */ "./src/app/enums/errorCodes.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _types_Package__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../types/Package */ "./src/app/types/Package.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
 
 
 
@@ -889,11 +794,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let NpmDependencyRetrieverService = class NpmDependencyRetrieverService {
+let HttpService = class HttpService {
     constructor(httpClient, toaster) {
         this.httpClient = httpClient;
         this.toaster = toaster;
-        this.REGISTRY_BASE_URL = 'https://registry.npmjs.org/';
+        this.BASE_URL = 'http://localhost:4444/api/npm-depency-retriever/';
         this.MINUTE_IN_MILLISECOND = 60000;
     }
     buildRequestUrl(pkg) {
@@ -904,18 +809,17 @@ let NpmDependencyRetrieverService = class NpmDependencyRetrieverService {
         else {
             pkgUrlSuffix = `${pkg.name}`;
         }
-        let requestUrl = `${this.REGISTRY_BASE_URL}${pkgUrlSuffix}`;
+        let requestUrl = `${this.BASE_URL}${pkgUrlSuffix}`;
         return requestUrl;
     }
-    getPackageLatestVersion(pkgName) {
-        let pkg = new _types_Package__WEBPACK_IMPORTED_MODULE_3__["Package"](pkgName, '');
+    getPackageDependecies(pkgName) {
+        const pkg = new _types_Package__WEBPACK_IMPORTED_MODULE_4__["Package"](pkgName, '');
         let requestUrl = this.buildRequestUrl(pkg);
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer$ => {
-            this.httpClient.get(requestUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["timeout"])(this.MINUTE_IN_MILLISECOND), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((response) => (response.versions)))
-                .subscribe((versionsObj) => {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_5__["Observable"](observer$ => {
+            this.httpClient.get(requestUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["timeout"])(this.MINUTE_IN_MILLISECOND))
+                .subscribe((depTree) => {
                 try {
-                    const latestVersion = Object.keys(versionsObj)[Object.keys(versionsObj).length - 1];
-                    observer$.next(latestVersion);
+                    observer$.next(depTree);
                     observer$.complete();
                 }
                 catch (err) {
@@ -926,66 +830,14 @@ let NpmDependencyRetrieverService = class NpmDependencyRetrieverService {
             });
         });
     }
-    getPackageDependecies(pkg) {
-        let requestUrl = this.buildRequestUrl(pkg);
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer$ => {
-            this.httpClient.get(requestUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["timeout"])(this.MINUTE_IN_MILLISECOND), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((response) => (response.dependencies)))
-                .subscribe((dependenciesObject) => {
-                try {
-                    observer$.next(this.parsePackageDependencies(dependenciesObject));
-                    observer$.complete();
-                }
-                catch (err) {
-                    this.throwErrorWrapper(err, observer$);
-                }
-            }, (err) => {
-                if (err.error && err.error.code === _enums_errorCodes__WEBPACK_IMPORTED_MODULE_7__["ErrorCodes"].METHOD_NOT_ALLOWED) {
-                    //this means that the packge version could not be found.
-                    //empty package dependencies is returned because we want to show
-                    //the package itself, even if it doesn't exist in the registry
-                    observer$.next([]);
-                    observer$.complete();
-                }
-                else {
-                    this.throwErrorWrapper(err, observer$);
-                }
-            });
-        });
-    }
-    parsePackageDependencies(dependenciesObject) {
-        if (!dependenciesObject) { // no deps found
-            return [];
-        }
-        let pkgDependencies = [];
-        Object.keys(dependenciesObject).map((key) => {
-            let pkg = new _types_Package__WEBPACK_IMPORTED_MODULE_3__["Package"](key, this.parsePackageVersion(dependenciesObject[key]));
-            pkgDependencies.push(pkg);
-        });
-        return pkgDependencies;
-    }
-    parsePackageVersion(version) {
-        return version.replace(/[><=^~ ]/g, '');
-    }
     getErrorMessage(error) {
-        let errorMessage = '';
-        if (error.name === _enums_errorCodes__WEBPACK_IMPORTED_MODULE_7__["ErrorCodes"].REQUEST_TIMEOUT) {
-            errorMessage = `Request timeout`;
+        if (error.status === _enums_errorCodes__WEBPACK_IMPORTED_MODULE_1__["ErrorCodes"].NO_RESPONSE) {
+            return 'Failed to reach server';
         }
-        else if (error && error.error) {
-            if (error.error.includes && error.error.includes('version not found')) {
-                errorMessage = `version ${error.url.split('/')[4]} for package ${error.url.split('/')[3]} not found!`;
-            }
-            else if ((error.error === 'Not Found') || (error.error.error && error.error.error.toLocaleLowerCase() === 'not found')) {
-                errorMessage = `package ${error.url.split('/')[3]} not found!`;
-            }
-            else {
-                errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-            }
+        if (error.error && error.error.message) {
+            return error.error.message;
         }
-        else {
-            errorMessage = ` Failed to parse results from API`;
-        }
-        return errorMessage;
+        return 'Failed to parse data from API';
     }
     throwErrorWrapper(err, observer$) {
         const errMsg = this.handleError(err);
@@ -1000,15 +852,15 @@ let NpmDependencyRetrieverService = class NpmDependencyRetrieverService {
         return errorMessage;
     }
 };
-NpmDependencyRetrieverService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"] }
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_7__["ToastrService"] }
 ];
-NpmDependencyRetrieverService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
         providedIn: 'root'
     })
-], NpmDependencyRetrieverService);
+], HttpService);
 
 
 
@@ -1031,24 +883,6 @@ class Package {
         this.name = pkgName;
         this.version = pkgVersion;
     }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/types/dependencyTree.ts":
-/*!*****************************************!*\
-  !*** ./src/app/types/dependencyTree.ts ***!
-  \*****************************************/
-/*! exports provided: DependencyTree */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DependencyTree", function() { return DependencyTree; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-class DependencyTree {
 }
 
 
@@ -1119,7 +953,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\dependecy-graph\dependency-graph-project\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\dependecy-graph\dependency-graph-project\client\src\main.ts */"./src/main.ts");
 
 
 /***/ })
