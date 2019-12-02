@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { ErrorCodes } from './../../enums/errorCodes';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +12,9 @@ import { DependencyTree } from 'src/app/types/dependencyTree';
 })
 export class HttpService {
 
-  private readonly BASE_URL: string = 'api/npm-depency-retriever/';
+  private readonly BASE_URL: string = 'http://localhost:4444/api/npm-depency-retriever/';
+
+  private readonly BASE_URL_PROD: string = 'api/npm-depency-retriever/';
 
   private readonly MINUTE_IN_MILLISECOND = 60000;
   constructor(private httpClient: HttpClient,
@@ -24,7 +27,8 @@ export class HttpService {
     } else {
       pkgUrlSuffix = `${pkg.name}`;
     }
-    let requestUrl = `${this.BASE_URL}${pkgUrlSuffix}`;
+    const baseUrl: string = environment.production ? this.BASE_URL_PROD : this.BASE_URL;
+    let requestUrl = `${baseUrl}${pkgUrlSuffix}`;
     return requestUrl;
   }
 

@@ -779,13 +779,15 @@ var ErrorCodes;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _enums_errorCodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../enums/errorCodes */ "./src/app/enums/errorCodes.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _types_Package__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../types/Package */ "./src/app/types/Package.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../environments/environment.prod */ "./src/environments/environment.prod.ts");
+/* harmony import */ var _enums_errorCodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../enums/errorCodes */ "./src/app/enums/errorCodes.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _types_Package__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../types/Package */ "./src/app/types/Package.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+
 
 
 
@@ -798,7 +800,8 @@ let HttpService = class HttpService {
     constructor(httpClient, toaster) {
         this.httpClient = httpClient;
         this.toaster = toaster;
-        this.BASE_URL = 'api/npm-depency-retriever/';
+        this.BASE_URL = 'http://localhost:4444/api/npm-depency-retriever/';
+        this.BASE_URL_PROD = 'api/npm-depency-retriever/';
         this.MINUTE_IN_MILLISECOND = 60000;
     }
     buildRequestUrl(pkg) {
@@ -809,14 +812,15 @@ let HttpService = class HttpService {
         else {
             pkgUrlSuffix = `${pkg.name}`;
         }
-        let requestUrl = `${this.BASE_URL}${pkgUrlSuffix}`;
+        const baseUrl = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_1__["environment"].production ? this.BASE_URL_PROD : this.BASE_URL;
+        let requestUrl = `${baseUrl}${pkgUrlSuffix}`;
         return requestUrl;
     }
     getPackageDependecies(pkgName) {
-        const pkg = new _types_Package__WEBPACK_IMPORTED_MODULE_4__["Package"](pkgName, '');
+        const pkg = new _types_Package__WEBPACK_IMPORTED_MODULE_5__["Package"](pkgName, '');
         let requestUrl = this.buildRequestUrl(pkg);
-        return new rxjs__WEBPACK_IMPORTED_MODULE_5__["Observable"](observer$ => {
-            this.httpClient.get(requestUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["timeout"])(this.MINUTE_IN_MILLISECOND))
+        return new rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"](observer$ => {
+            this.httpClient.get(requestUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["timeout"])(this.MINUTE_IN_MILLISECOND))
                 .subscribe((depTree) => {
                 try {
                     observer$.next(depTree);
@@ -831,7 +835,7 @@ let HttpService = class HttpService {
         });
     }
     getErrorMessage(error) {
-        if (error.status === _enums_errorCodes__WEBPACK_IMPORTED_MODULE_1__["ErrorCodes"].NO_RESPONSE) {
+        if (error.status === _enums_errorCodes__WEBPACK_IMPORTED_MODULE_2__["ErrorCodes"].NO_RESPONSE) {
             return 'Failed to reach server';
         }
         if (error.error && error.error.message) {
@@ -853,11 +857,11 @@ let HttpService = class HttpService {
     }
 };
 HttpService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
-    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_7__["ToastrService"] }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_8__["ToastrService"] }
 ];
 HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])({
         providedIn: 'root'
     })
 ], HttpService);
@@ -884,6 +888,25 @@ class Package {
         this.version = pkgVersion;
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/environments/environment.prod.ts":
+/*!**********************************************!*\
+  !*** ./src/environments/environment.prod.ts ***!
+  \**********************************************/
+/*! exports provided: environment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+const environment = {
+    production: true
+};
 
 
 /***/ }),
