@@ -1,4 +1,3 @@
-import { environment } from './../../../environments/environment.prod';
 import { ErrorCodes } from './../../enums/errorCodes';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +6,7 @@ import { Observable } from 'rxjs';
 import {  timeout } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { DependencyTree } from 'src/app/types/dependencyTree';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })

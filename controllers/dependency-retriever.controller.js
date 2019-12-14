@@ -1,7 +1,8 @@
+const HttpStatus = require("http-status-codes");
 const DependencyManagerService = require( "../services/dependencies-manager.service" );
 
 function sendErrorResponse(res, err) {
-	return res.status(400).send({
+	return res.status(HttpStatus.BAD_REQUEST).send({
 		message: err.message,
 	});
 }
