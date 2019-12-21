@@ -1,9 +1,6 @@
 # Npm Package Depedencies Visualization
 
 Demo: http://serene-tor-26385.herokuapp.com/
-(May need CORS browser extension because npm registry is 
-not allowing the website requests)
-
 
 Project to show npm package dependencies graph with D3 tree.
 
