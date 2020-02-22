@@ -10,8 +10,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { throwError, of } from 'rxjs';
-import { Package } from 'src/app/types/Package';
-import { DependencyTree } from 'src/app/types/dependencyTree';
+import { Package } from 'src/app/types/package';
+import { DependencyTree } from 'src/app/types/dependency-tree';
 
 const ToastrStub = {
   error(msg): void { //

@@ -1,11 +1,11 @@
-import { ErrorCodes } from './../../enums/errorCodes';
+import { ErrorCodes } from '../../enums/error-codes';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Package } from '../../types/Package';
+import { Package } from '../../types/package';
 import { Observable } from 'rxjs';
 import {  timeout } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { DependencyTree } from 'src/app/types/dependencyTree';
+import { DependencyTree } from 'src/app/types/dependency-tree';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'

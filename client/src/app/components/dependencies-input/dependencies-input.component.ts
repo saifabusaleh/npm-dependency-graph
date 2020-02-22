@@ -1,4 +1,4 @@
-import { Package } from 'src/app/types/Package';
+import { Package } from 'src/app/types/package';
 import { Component, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 

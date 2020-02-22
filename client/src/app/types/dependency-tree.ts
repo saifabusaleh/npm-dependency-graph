@@ -1,4 +1,4 @@
-import {Package} from './Package';
+import {Package} from './package';
 
 export class DependencyTree {
   package: Package;

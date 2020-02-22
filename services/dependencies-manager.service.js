@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
-const DependencyTree = require("../model/DependencyTree");
+const DependencyTree = require("../model/dependency-tree");
 const depRetrieverService = require("./depdencies-retriever.service");
-const Package = require("../model/Package");
+const Package = require("../model/package");
 
 
 function iterateOverDependenciesAndCallRecursively(pkgDependencies,

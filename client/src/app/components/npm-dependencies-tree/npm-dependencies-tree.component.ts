@@ -1,7 +1,7 @@
 import { HttpService } from '../../services/http-service/http.service';
 import { TreeChartComponent } from '../tree-chart/tree-chart.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DependencyTree } from 'src/app/types/dependencyTree';
+import { DependencyTree } from 'src/app/types/dependency-tree';
 
 @Component({
   selector: 'app-dependencies-tree',

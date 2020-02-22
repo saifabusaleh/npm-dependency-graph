@@ -3,8 +3,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { HttpService } from './http.service';
 import { ToastrService } from 'ngx-toastr';
-import { ErrorCodes } from 'src/app/enums/errorCodes';
-import { DependencyTree } from 'src/app/types/dependencyTree';
+import { ErrorCodes } from 'src/app/enums/error-codes';
+import { DependencyTree } from 'src/app/types/dependency-tree';
 
 const ToastrStub = {
   error(msg): void { //
