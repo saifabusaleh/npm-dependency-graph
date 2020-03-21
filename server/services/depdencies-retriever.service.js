@@ -1,5 +1,5 @@
 const axios = require("axios");
-const Package = require("../model/Package");
+const Package = require("../model/package");
 const ErrorCodes = require("../enums/ErrorResponses");
 
 const REGISTRY_BASE_URL = "http://registry.npmjs.org/";
