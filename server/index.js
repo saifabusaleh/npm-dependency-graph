@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require( "body-parser" );
 const cors = require( "cors" );
 const path = require("path");
-const dependenciesRetrieverRoute = require( "./server/routes/dependencies-retriever.route" );
+const dependenciesRetrieverRoute = require( "./routes/dependencies-retriever.route" );
 
 
 app.use( cors() );
