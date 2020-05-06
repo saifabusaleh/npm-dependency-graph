@@ -34,18 +34,18 @@ describe('DependenciesInputComponent', () => {
 
   describe('onGetPackageDependenciesClick', () => {
     it('should emit according to packageName control value', () => {
-      let pkgNameInputValue: string = 'file-system';
+      const pkgNameInputValue = 'file-system';
       component.InputsForm.controls.packageName.setValue(pkgNameInputValue);
-      spyOn(component.onSubmitEvent, 'emit');
-      component.onGetPackageDependenciesClick();
-      expect(component.onSubmitEvent.emit).toHaveBeenCalledWith(pkgNameInputValue);
+      spyOn(component.submitEvent, 'emit');
+      component.onGetPackageDependencies();
+      expect(component.submitEvent.emit).toHaveBeenCalledWith(pkgNameInputValue);
     });
 
     it('should not emit when the control is not valid ', () => {
       component.InputsForm.controls.packageName.setValue(undefined);
-      spyOn(component.onSubmitEvent, 'emit');
-      component.onGetPackageDependenciesClick();
-      expect(component.onSubmitEvent.emit).not.toHaveBeenCalled();
+      spyOn(component.submitEvent, 'emit');
+      component.onGetPackageDependencies();
+      expect(component.submitEvent.emit).not.toHaveBeenCalled();
     });
   });
 });

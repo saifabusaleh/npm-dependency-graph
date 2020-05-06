@@ -13,8 +13,8 @@ export class DependenciesInputComponent implements OnInit {
   public readonly fieldIsRequiredMsg: string = 'Field is required.';
   public readonly packageNameMsg: string = 'Package Name';
 
-  public getPkgDependenciesMsg: string = 'Get Dependencies';
-  @Output() onSubmitEvent = new EventEmitter<Package>();
+  public getPkgDependenciesMsg = 'Get Dependencies';
+  @Output() submitEvent = new EventEmitter<Package>();
   InputsForm = new FormGroup({});
   constructor(private formBuilder: FormBuilder) {
     //
@@ -30,13 +30,11 @@ export class DependenciesInputComponent implements OnInit {
     });
   }
 
-  public onGetPackageDependenciesClick() {
+  public onGetPackageDependencies() {
     this.InputsForm.get('packageName').markAsTouched();
     if (this.InputsForm.get('packageName').valid) {
-      let pkgName = this.InputsForm.get('packageName').value;
-      this.onSubmitEvent.emit(pkgName);
+      const pkgName = this.InputsForm.get('packageName').value;
+      this.submitEvent.emit(pkgName);
     }
-
   }
-
 }

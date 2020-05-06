@@ -18,7 +18,7 @@ export class HttpService {
 
   private readonly MINUTE_IN_MILLISECOND = 60000;
   constructor(private httpClient: HttpClient,
-    private toaster: ToastrService) { }
+              private toaster: ToastrService) { }
 
   private buildRequestUrl(pkg: Package) {
     let pkgUrlSuffix;
@@ -28,13 +28,12 @@ export class HttpService {
       pkgUrlSuffix = `${pkg.name}`;
     }
     const baseUrl: string = environment.production ? this.BASE_URL_PROD : this.BASE_URL;
-    let requestUrl = `${baseUrl}${pkgUrlSuffix}`;
-    return requestUrl;
+    return `${baseUrl}${pkgUrlSuffix}`;
   }
 
   public getPackageDependecies(pkgName: string): Observable<DependencyTree> {
     const pkg = new Package(pkgName, '');
-    let requestUrl = this.buildRequestUrl(pkg);
+    const requestUrl = this.buildRequestUrl(pkg);
     return new Observable(observer$ => {
       this.httpClient.get(requestUrl).pipe(timeout(this.MINUTE_IN_MILLISECOND))
         .subscribe((depTree: DependencyTree) => {
