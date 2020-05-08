@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 const DependencyTree = require("../model/dependency-tree");
-const depRetrieverService = require("./depdencies-retriever.service");
+const depHttpService = require("./dependencies-http.service");
 const Package = require("../model/package");
 
 
@@ -28,7 +28,7 @@ async function getPackageDependenciesRecursively(pkg, root, pkgToPkgDepsCache) {
 			root.dependencies = pkgToPkgDepsCache.get(pkg.name + pkg.version);
 			resolve(root);
 		} else {
-			const pkgDependencies = await depRetrieverService.retrievePackageDependencies(pkg);
+			const pkgDependencies = await depHttpService.retrievePackageDependencies(pkg);
 			if (pkgDependencies.length === 0) {
 				pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
 				resolve(root);
@@ -45,7 +45,7 @@ async function getPackageDependenciesRecursively(pkg, root, pkgToPkgDepsCache) {
 
 
 async function getPackageDependencies(pkgName) {
-	const pkgVersion = await depRetrieverService.retrievePackageLatestVersion(pkgName);
+	const pkgVersion = await depHttpService.retrievePackageLatestVersion(pkgName);
 	const pkg = new Package(pkgName, pkgVersion);
 	const depTree = new DependencyTree();
 	const pkgToPkgDepsCache = new Map();

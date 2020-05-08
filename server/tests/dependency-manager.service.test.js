@@ -1,7 +1,7 @@
-const DependencyTree = require("../model/DependencyTree");
+const DependencyTree = require("../model/dependency-tree");
 
 const DependencyManagerService = require( "../services/dependencies-manager.service" );
-const DependencyRetrieverService = require( "../services/depdencies-retriever.service" );
+const DependencyHttpService = require( "../services/dependencies-http.service" );
 
 
 describe("DependencyManagerService", () => {
@@ -28,7 +28,7 @@ describe("DependencyManagerService", () => {
 			const pkgToPkgDepsCache = new Map();
 			const depTree = new DependencyTree();
 
-			jest.spyOn(DependencyRetrieverService, "retrievePackageDependencies").mockReturnValue([]);
+			jest.spyOn(DependencyHttpService, "retrievePackageDependencies").mockReturnValue([]);
 			const pkgDeps = await DependencyManagerService
 				.getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
 			expect(pkgDeps.package).toEqual(pkg);
