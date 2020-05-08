@@ -28,7 +28,7 @@ describe("DependencyManagerService", () => {
 			const pkgToPkgDepsCache = new Map();
 			const depTree = new DependencyTree();
 
-			jest.spyOn(DependencyHttpService, "retrievePackageDependencies").mockReturnValue([]);
+			jest.spyOn(DependencyHttpService, "getPackageDependencies").mockReturnValue([]);
 			const pkgDeps = await DependencyManagerService
 				.getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
 			expect(pkgDeps.package).toEqual(pkg);

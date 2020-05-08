@@ -4,9 +4,9 @@ const MockAdapter = require("axios-mock-adapter");
 const DependencyHttpService = require( "../services/dependencies-http.service" );
 
 
-describe("DependencyRetrieverService", () => {
+describe("DependencyHttpService", () => {
 	const mockAxios = new MockAdapter(axios);
-	describe("retrievePackageLatestVersion", () => {
+	describe("getPackageLatestVersion", () => {
 		const mockVersionsResponse = () => {
 			const dummyVersionsResponse = {};
 			(dummyVersionsResponse).versions = {};
@@ -21,7 +21,7 @@ describe("DependencyRetrieverService", () => {
 			const pkg = { name: "file-system", version: "2.0" };
 			const expectedVersion = Object.keys((versionsRes).versions)[Object
 				.keys((versionsRes).versions).length - 1];
-			const latestVersion = await DependencyHttpService.retrievePackageLatestVersion(pkg.name);
+			const latestVersion = await DependencyHttpService.getPackageLatestVersion(pkg.name);
 			expect(latestVersion).toEqual(expectedVersion);
 			done();
 		});
@@ -32,7 +32,7 @@ describe("DependencyRetrieverService", () => {
 	});
 
 
-	describe("retrievePackageDependencies", () => {
+	describe("getPackageDependencies", () => {
 		const dependenciesResponse = {
 
 			dependencies: {
@@ -45,7 +45,7 @@ describe("DependencyRetrieverService", () => {
 		it("should parse package dependencies correctly", async (done) => {
 			mockAxios.onGet("http://registry.npmjs.org/file-system/2.0").reply(200, dependenciesResponse);
 			const pkg = { name: "file-system", version: "2.0" };
-			const pkgDeps = await DependencyHttpService.retrievePackageDependencies(pkg);
+			const pkgDeps = await DependencyHttpService.getPackageDependencies(pkg);
 			expect(pkgDeps.length).toEqual(4);
 			let i = 0;
 			Object.entries(dependenciesResponse.dependencies).forEach(([ key ]) => {

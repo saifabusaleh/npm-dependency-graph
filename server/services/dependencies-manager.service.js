@@ -28,7 +28,7 @@ async function getPackageDependenciesRecursively(pkg, root, pkgToPkgDepsCache) {
 			root.dependencies = pkgToPkgDepsCache.get(pkg.name + pkg.version);
 			resolve(root);
 		} else {
-			const pkgDependencies = await depHttpService.retrievePackageDependencies(pkg);
+			const pkgDependencies = await depHttpService.getPackageDependencies(pkg);
 			if (pkgDependencies.length === 0) {
 				pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
 				resolve(root);
@@ -45,12 +45,8 @@ async function getPackageDependenciesRecursively(pkg, root, pkgToPkgDepsCache) {
 
 
 async function getPackageDependencies(pkgName) {
-	const pkgVersion = await depHttpService.retrievePackageLatestVersion(pkgName);
-	const pkg = new Package(pkgName, pkgVersion);
-	const depTree = new DependencyTree();
-	const pkgToPkgDepsCache = new Map();
-	const pkgDeps = await getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
-	return pkgDeps;
+	const pkgVersion = await depHttpService.getPackageLatestVersion(pkgName);
+	return await getPackageDependenciesRecursively(new Package(pkgName, pkgVersion), new DependencyTree(), new Map());;
 }
 module.exports.getPackageDependencies = getPackageDependencies;
 module.exports.getPackageDependenciesRecursively = getPackageDependenciesRecursively;

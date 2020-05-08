@@ -49,7 +49,7 @@ function parsePackageDependencies(dependenciesObject) {
 	return pkgDependencies;
 }
 
-async function retrievePackageLatestVersion(pkgName) {
+async function getPackageLatestVersion(pkgName) {
 	const pkg = new Package(pkgName, "");
 	const requestUrl = buildRequestUrl(pkg);
 	let latestVersion;
@@ -64,7 +64,7 @@ async function retrievePackageLatestVersion(pkgName) {
 	return latestVersion;
 }
 
-async function retrievePackageDependencies(pkg) {
+async function getPackageDependencies(pkg) {
 	const requestUrl = buildRequestUrl(pkg);
 	let pkgDeps;
 	try {
@@ -80,5 +80,5 @@ async function retrievePackageDependencies(pkg) {
 	return pkgDeps;
 }
 
-module.exports.retrievePackageDependencies = retrievePackageDependencies;
-module.exports.retrievePackageLatestVersion = retrievePackageLatestVersion;
+module.exports.getPackageDependencies = getPackageDependencies;
+module.exports.getPackageLatestVersion = getPackageLatestVersion;
