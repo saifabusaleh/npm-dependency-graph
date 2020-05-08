@@ -33,7 +33,7 @@ export class TreeChartComponent implements OnInit {
 
   public buildTree(treeData) {
     d3.select('svg').remove();
-    let svg = d3.select(this.element).append('svg')
+    const svg = d3.select(this.element).append('svg')
       .attr('width', this.width)
       .attr('height', this.height)
       .append('g')
@@ -43,11 +43,13 @@ export class TreeChartComponent implements OnInit {
 
 
     // declares a tree layout and assigns the size
-    let treeMap = d3.tree().size([this.height - this.margin.top - this.margin.bottom, this.width - this.margin.left - this.margin.right]);
+    const treeMap = d3.tree().size([this.height - this.margin.top - this.margin.bottom, this.width - this.margin.left - this.margin.right]);
 
     // Assigns parent, children, height, depth
-    let root, i = 0, duration;
-    root = d3.hierarchy(treeData, function (d) { return d.dependencies; });
+    const root = d3.hierarchy(treeData, function(d) { return d.dependencies; });
+    let  i = 0;
+    let duration: any;
+
     root.x0 = this.height / 2;
     root.y0 = 0;
     update(root);
@@ -55,25 +57,25 @@ export class TreeChartComponent implements OnInit {
     function update(source) {
 
       // Assigns the x and y position for the nodes
-      var treeData = treeMap(root);
+      const treeData = treeMap(root);
 
       // Compute the new tree layout.
-      var nodes = treeData.descendants(),
-        links = treeData.descendants().slice(1);
+      const nodes = treeData.descendants();
+      const links = treeData.descendants().slice(1);
 
       // Normalize for fixed-depth.
-      nodes.forEach(function (d) { d.y = d.depth * 180; });
+      nodes.forEach(function(d) { d.y = d.depth * 180; });
 
       // ****************** Nodes section ***************************
 
       // Update the nodes...
-      var node = svg.selectAll('g.node')
-        .data(nodes, function (d) { return d.id || (d.id = ++i); });
+      const node = svg.selectAll('g.node')
+        .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
       // Enter any new modes at the parent's previous position.
-      var nodeEnter = node.enter().append('g')
+      const nodeEnter = node.enter().append('g')
         .attr('class', 'node')
-        .attr('transform', function (d) {
+        .attr('transform', function(d) {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
         .on('click', click);
@@ -82,43 +84,43 @@ export class TreeChartComponent implements OnInit {
       nodeEnter.append('circle')
         .attr('class', 'node')
         .attr('r', 1e-15)
-        .style('fill', function (d) {
+        .style('fill', function(d) {
           return d._children ? 'lightsteelblue' : '#fff';
         });
 
       // Add labels for the nodes
       nodeEnter.append('text')
         .attr('dy', '.35em')
-        .attr('x', function (d) {
+        .attr('x', function(d) {
           return d.children || d._children ? -13 : 13;
         })
-        .attr('text-anchor', function (d) {
+        .attr('text-anchor', function(d) {
           return d.children || d._children ? 'end' : 'start';
         })
-        .text(function (d) { return d.data.package.name + ' ' + d.data.package.version; });
+        .text(function(d) { return d.data.package.name + ' ' + d.data.package.version; });
       // UPDATE
-      var nodeUpdate = nodeEnter.merge(node);
+      const nodeUpdate = nodeEnter.merge(node);
 
       // Transition to the proper position for the node
       nodeUpdate.transition()
         .duration(duration)
-        .attr('transform', function (d) {
+        .attr('transform', function(d) {
           return 'translate(' + d.y + ',' + d.x + ')';
         });
 
       // Update the node attributes and style
       nodeUpdate.select('circle.node')
         .attr('r', 1)
-        .style('fill', function (d) {
+        .style('fill', function(d) {
           return d._children ? 'lightsteelblue' : '#fff';
         })
         .attr('cursor', 'pointer');
 
 
       // Remove any exiting nodes
-      var nodeExit = node.exit().transition()
+      const nodeExit = node.exit().transition()
         .duration(duration)
-        .attr('transform', function (d) {
+        .attr('transform', function(d) {
           return 'translate(' + source.y + ',' + source.x + ')';
         })
         .remove();
@@ -134,35 +136,35 @@ export class TreeChartComponent implements OnInit {
       // ****************** links section ***************************
 
       // Update the links...
-      var link = svg.selectAll('path.link')
-        .data(links, function (d) { return d.id; });
+      const link = svg.selectAll('path.link')
+        .data(links, function(d) { return d.id; });
 
       // Enter any new links at the parent's previous position.
-      var linkEnter = link.enter().insert('path', 'g')
+      const linkEnter = link.enter().insert('path', 'g')
         .attr('class', 'link')
-        .attr('d', function (d) {
-          var o = { x: source.x0, y: source.y0 };
+        .attr('d', function(d) {
+          const o = { x: source.x0, y: source.y0 };
           return diagonal(o, o);
         });
 
       // UPDATE
-      var linkUpdate = linkEnter.merge(link);
+      const linkUpdate = linkEnter.merge(link);
 
       // Transition back to the parent element position
       linkUpdate.transition()
         .duration(duration)
-        .attr('d', function (d) { return diagonal(d, d.parent); });
+        .attr('d', function(d) { return diagonal(d, d.parent); });
 
       // Remove any exiting links
-      var linkExit = link.exit().transition()
+      const linkExit = link.exit().transition()
         .duration(duration)
-        .attr('d', function (d) {
-          var o = { x: source.x, y: source.y };
+        .attr('d', function(d) {
+          const o = { x: source.x, y: source.y };
           return diagonal(o, o);
         }).remove();
 
       // Store the old positions for transition.
-      nodes.forEach(function (d) {
+      nodes.forEach(function(d) {
         d.x0 = d.x;
         d.y0 = d.y;
       });
@@ -170,7 +172,7 @@ export class TreeChartComponent implements OnInit {
       // Creates a curved (diagonal) path from parent to the child nodes
       function diagonal(s, d) {
 
-        let path = `M ${s.y} ${s.x}
+        const path = `M ${s.y} ${s.x}
                 C ${(s.y + d.y) / 2} ${s.x},
                   ${(s.y + d.y) / 2} ${d.x},
                   ${d.y} ${d.x}`;
