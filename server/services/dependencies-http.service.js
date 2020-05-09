@@ -4,7 +4,7 @@ const semverService = require('./semver.service');
 const ErrorCodes = require('../enums/errorResponses');
 
 const REGISTRY_BASE_URL = 'http://registry.npmjs.org/';
-
+const pkgToResolvedPackageVersionCache = new Map();
 
 function buildRequestUrl(pkg) {
   let pkgUrlSuffix;
@@ -55,9 +55,14 @@ async function parsePackageVersion(pkgName, version) {
   if (!isNaN(version[0]) && version.split('.').length === 3) {
     return version;
   }
+  if (pkgToResolvedPackageVersionCache.get(pkgName + version)) {
+    console.log('found in cache', pkgName + version);
+    return pkgToResolvedPackageVersionCache.get(pkgName + version);
+  }
   const allAvailableVersions = await getPackageAvailableVersions(pkgName);
-  return semverService.resolveVersion(version, allAvailableVersions);
-  // return version.replace(/[><=^~ ]/g, "");
+  const resolvedVersion = semverService.resolveVersion(version, allAvailableVersions);
+  pkgToResolvedPackageVersionCache.set(pkgName + version, resolvedVersion);
+  return resolvedVersion;
 }
 
 async function getPackageLatestVersion(pkgName) {
