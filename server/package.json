@@ -7,7 +7,8 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "test": "jest --detectOpenHandles",
-    "debug": "node --inspect server.js"
+    "debug": "node --inspect server.js",
+    "lint":"eslint . --fix"
   },
   "author": "Saif Abu Saleh",
   "license": "ISC",
@@ -21,9 +22,9 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.17.0",
-    "eslint": "=6.6.0",
-    "eslint-config-airbnb-base": "=14.0.0",
-    "eslint-plugin-import": "=2.18.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "jest": "^24.9.0",
     "nodemon": "=1.19.4",
     "supertest": "^4.0.2",
