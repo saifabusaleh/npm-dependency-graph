@@ -1,10 +1,8 @@
-const DependencyTree = require("../model/dependency-tree");
-
-const DependencyManagerService = require( "../services/dependencies-manager.service" );
-const DependencyHttpService = require( "../services/dependencies-http.service" );
-
-
 describe("DependencyManagerService", () => {
+	const DependencyTree = require("../model/dependency-tree");
+
+	const dependencyManagerService = require("../services/dependencies-manager.service");
+	const dependencyHttpService = require("../services/dependencies-http.service");
 	describe("getPackageDependenciesRecursively", () => {
 		const rootPkgName = "file-system";
 		const rootPkgVersion = "2.0.1";
@@ -15,7 +13,7 @@ describe("DependencyManagerService", () => {
 			const pkgToPkgDepsCache = new Map();
 			pkgToPkgDepsCache.set(`${rootPkgName}${rootPkgVersion}`, pkgDependencyTree);
 			const depTree = new DependencyTree();
-			const pkgDeps = await DependencyManagerService
+			const pkgDeps = await dependencyManagerService
 				.getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
 			expect(pkgDeps.package).toEqual(pkg);
 			expect(pkgDeps.dependencies).toEqual(pkgDependencyTree);
@@ -28,8 +26,8 @@ describe("DependencyManagerService", () => {
 			const pkgToPkgDepsCache = new Map();
 			const depTree = new DependencyTree();
 
-			jest.spyOn(DependencyHttpService, "getPackageDependencies").mockReturnValue([]);
-			const pkgDeps = await DependencyManagerService
+			jest.spyOn(dependencyHttpService, "getPackageDependencies").mockReturnValue([]);
+			const pkgDeps = await dependencyManagerService
 				.getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
 			expect(pkgDeps.package).toEqual(pkg);
 			expect(pkgDeps.dependencies).toEqual([]);

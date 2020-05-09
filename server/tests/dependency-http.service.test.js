@@ -1,11 +1,9 @@
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-
-const DependencyHttpService = require( "../services/dependencies-http.service" );
-
-
 describe("DependencyHttpService", () => {
-	const mockAxios = new MockAdapter(axios);
+	const axios = require("axios");
+	const mockAdapter = require("axios-mock-adapter");
+
+	const dependencyHttpService = require("../services/dependencies-http.service");
+	const mockAxios = new mockAdapter(axios);
 	describe("getPackageLatestVersion", () => {
 		const mockVersionsResponse = () => {
 			const dummyVersionsResponse = {};
@@ -21,12 +19,12 @@ describe("DependencyHttpService", () => {
 			const pkg = { name: "file-system", version: "2.0" };
 			const expectedVersion = Object.keys((versionsRes).versions)[Object
 				.keys((versionsRes).versions).length - 1];
-			const latestVersion = await DependencyHttpService.getPackageLatestVersion(pkg.name);
+			const latestVersion = await dependencyHttpService.getPackageLatestVersion(pkg.name);
 			expect(latestVersion).toEqual(expectedVersion);
 			done();
 		});
 
-		afterEach( () => {
+		afterEach(() => {
 			mockAxios.reset();
 		});
 	});
@@ -45,10 +43,10 @@ describe("DependencyHttpService", () => {
 		it("should parse package dependencies correctly", async (done) => {
 			mockAxios.onGet("http://registry.npmjs.org/file-system/2.0").reply(200, dependenciesResponse);
 			const pkg = { name: "file-system", version: "2.0" };
-			const pkgDeps = await DependencyHttpService.getPackageDependencies(pkg);
+			const pkgDeps = await dependencyHttpService.getPackageDependencies(pkg);
 			expect(pkgDeps.length).toEqual(4);
 			let i = 0;
-			Object.entries(dependenciesResponse.dependencies).forEach(([ key ]) => {
+			Object.entries(dependenciesResponse.dependencies).forEach(([key]) => {
 				expect(pkgDeps[i].name).toEqual(key);
 				i += 1;
 			});
@@ -59,7 +57,7 @@ describe("DependencyHttpService", () => {
 			done();
 		});
 
-		afterEach( () => {
+		afterEach(() => {
 			mockAxios.reset();
 		});
 	});
