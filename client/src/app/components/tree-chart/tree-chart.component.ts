@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input } from '@angular/core';
 import * as d3 from 'd3';
+import { DependencyAPIResponse } from 'src/app/types/dependency-api-response';
 
 @Component({
   selector: 'app-tree-chart',
@@ -31,7 +32,10 @@ export class TreeChartComponent implements OnInit {
     this.element = this.chartContainer.nativeElement;
   }
 
-  public buildTree(treeData) {
+  public buildTree(response: DependencyAPIResponse) {
+    if (response.tree.package.name.length + response.tree.package.version.length >= 15) {
+      this.margin.left += 50;
+    }
     d3.select('svg').remove();
     const svg = d3.select(this.element).append('svg')
       .attr('width', this.width)
@@ -46,7 +50,7 @@ export class TreeChartComponent implements OnInit {
     const treeMap = d3.tree().size([this.height - this.margin.top - this.margin.bottom, this.width - this.margin.left - this.margin.right]);
 
     // Assigns parent, children, height, depth
-    const root = d3.hierarchy(treeData, function(d) { return d.dependencies; });
+    const root = d3.hierarchy(response.tree, function(d) { return d.dependencies; });
     let  i = 0;
     let duration: any;
 
@@ -98,7 +102,8 @@ export class TreeChartComponent implements OnInit {
           return d.children || d._children ? 'end' : 'start';
         })
         .text(function(d) { return d.data.package.name + '  ' + d.data.package.version; })
-        .call(wrap, 30); // wrap the text in <= 30 pixels
+        .style('font-size', response.size < 40 ? '13px' : '11px');
+      //  .call(wrap, 50);
       // UPDATE
       const nodeUpdate = nodeEnter.merge(node);
 
@@ -193,38 +198,37 @@ export class TreeChartComponent implements OnInit {
         update(d);
       }
 
-      function wrap(text, width) {
-        text.each(function() {
-          // tslint:disable-next-line: one-variable-per-declaration
-          // tslint:disable-next-line: prefer-const
-          // tslint:disable-next-line: one-variable-per-declaration
-          let text = d3.select(this),
-              words = text.text().split('  ').reverse(),
-              word,
-              line = [],
-              x = text.attr('x'),
-              y = text.attr('y'),
-              dy = parseFloat(text.attr('dy')),
-              tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
-          while (word = words.pop()) {
-            line.push(word);
-            tspan.text(line.join(' '));
-            if (tspan.node().getComputedTextLength() > width) {
-              line.pop();
-              tspan.text(line.join(' '));
-              line = [word];
-              const shouldAddLineBreak = word.split('.').length > 1;
-              console.log(word, shouldAddLineBreak);
-              if (shouldAddLineBreak) {
-                tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy','1.3em').text(word);
-              } else {
-                tspan = text.append('tspan').attr('x', x).attr('y', y).text(word);
+      // function wrap(text, width) {
+      //   text.each(function() {
+      //     // tslint:disable-next-line: one-variable-per-declaration
+      //     // tslint:disable-next-line: prefer-const
+      //     // tslint:disable-next-line: one-variable-per-declaration
+      //     let text = d3.select(this),
+      //         words = text.text().split('  ').reverse(),
+      //         word,
+      //         line = [],
+      //         x = text.attr('x'),
+      //         y = text.attr('y'),
+      //         dy = parseFloat(text.attr('dy')),
+      //         tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+      //     while (word = words.pop()) {
+      //       line.push(word);
+      //       tspan.text(line.join(' '));
+      //       if (tspan.node().getComputedTextLength() > width) {
+      //         line.pop();
+      //         tspan.text(line.join(' '));
+      //         line = [word];
+      //         const shouldAddLineBreak = word.split('.').length > 1;
+      //         if (shouldAddLineBreak) {
+      //           tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy','1.3em').text(word);
+      //         } else {
+      //           tspan = text.append('tspan').attr('x', x).attr('y', y).text(word);
 
-              }
-            }
-          }
-        });
-      }
+      //         }
+      //       }
+      //     }
+      //   });
+      // }
     }
   }
 }

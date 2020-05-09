@@ -26,18 +26,18 @@ async function getPackageDependenciesRecursively(pkg, root, pkgToPkgDepsCache) {
   return new Promise(async (resolve) => {
     if (pkgToPkgDepsCache.get(pkg.name + pkg.version)) {
       root.dependencies = pkgToPkgDepsCache.get(pkg.name + pkg.version);
-      resolve(root);
+      resolve({ tree: root, size: pkgToPkgDepsCache.size });
     } else {
       const pkgDependencies = await depHttpService.getPackageDependencies(pkg);
       if (pkgDependencies.length === 0) {
         pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
-        resolve(root);
+        resolve({ tree: root, size: pkgToPkgDepsCache.size });
       } else {
         iterateOverDependenciesAndCallRecursively(pkgDependencies, promisesArr,
           root, pkgToPkgDepsCache);
         await Promise.all(promisesArr);
         pkgToPkgDepsCache.set(pkg.name + pkg.version, root.dependencies);
-        resolve(root);
+        resolve({ tree: root, size: pkgToPkgDepsCache.size });
       }
     }
   });

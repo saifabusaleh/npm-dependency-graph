@@ -2,6 +2,7 @@ import { HttpService } from '../../services/http-service/http.service';
 import { TreeChartComponent } from '../tree-chart/tree-chart.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DependencyTree } from 'src/app/types/dependency-tree';
+import { DependencyAPIResponse } from 'src/app/types/dependency-api-response';
 
 @Component({
   selector: 'app-dependencies-tree',
@@ -23,9 +24,9 @@ export class DependenciesTreeComponent implements OnInit {
 
   getPackageDependencies(pkgName: string) {
     this.isLoading = true;
-    this.httpService.getPackageDependecies(pkgName).subscribe((treeData: DependencyTree) => {
+    this.httpService.getPackageDependecies(pkgName).subscribe((response: DependencyAPIResponse) => {
       this.isLoading = false;
-      this.treeChartComponent.buildTree(treeData);
+      this.treeChartComponent.buildTree(response);
     }, () => {
       this.isLoading = false;
     });

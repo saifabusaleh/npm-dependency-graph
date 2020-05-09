@@ -5,8 +5,8 @@ import { Package } from '../../types/package';
 import { Observable } from 'rxjs';
 import {  timeout } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { DependencyTree } from 'src/app/types/dependency-tree';
 import { environment } from 'src/environments/environment';
+import { DependencyAPIResponse } from 'src/app/types/dependency-api-response';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,14 +31,14 @@ export class HttpService {
     return `${baseUrl}${pkgUrlSuffix}`;
   }
 
-  public getPackageDependecies(pkgName: string): Observable<DependencyTree> {
+  public getPackageDependecies(pkgName: string): Observable<DependencyAPIResponse> {
     const pkg = new Package(pkgName, '');
     const requestUrl = this.buildRequestUrl(pkg);
     return new Observable(observer$ => {
       this.httpClient.get(requestUrl).pipe(timeout(this.MINUTE_IN_MILLISECOND))
-        .subscribe((depTree: DependencyTree) => {
+        .subscribe((response: DependencyAPIResponse) => {
           try {
-            observer$.next(depTree);
+            observer$.next(response);
             observer$.complete();
           } catch (err) {
             this.throwErrorWrapper(err, observer$);
