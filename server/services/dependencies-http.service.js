@@ -52,7 +52,7 @@ async function getPackageAvailableVersions(pkgName) {
 
 
 async function parsePackageVersion(pkgName, version) {
-  if (!isNaN(version[0])) {
+  if (!isNaN(version[0]) && version.split('.').length === 3) {
     return version;
   }
   const allAvailableVersions = await getPackageAvailableVersions(pkgName);

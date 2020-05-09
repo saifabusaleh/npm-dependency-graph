@@ -15,7 +15,6 @@ function resolveByCaret(majorVersion, versionIndex, allAvailableVersions) {
 
 
 // ~
-// 2.0.0  2.0.1   2.1.0
 function resolveByTilde(minorVersion, versionIndex, allAvailableVersions) {
   for (let i = versionIndex + 1; i < allAvailableVersions.length; i += 1) {
     const availableVersion = allAvailableVersions[i];

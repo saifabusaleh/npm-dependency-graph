@@ -97,7 +97,8 @@ export class TreeChartComponent implements OnInit {
         .attr('text-anchor', function(d) {
           return d.children || d._children ? 'end' : 'start';
         })
-        .text(function(d) { return d.data.package.name + ' ' + d.data.package.version; });
+        .text(function(d) { return d.data.package.name + '  ' + d.data.package.version; })
+        .call(wrap, 30); // wrap the text in <= 30 pixels
       // UPDATE
       const nodeUpdate = nodeEnter.merge(node);
 
@@ -190,6 +191,39 @@ export class TreeChartComponent implements OnInit {
           d._children = null;
         }
         update(d);
+      }
+
+      function wrap(text, width) {
+        text.each(function() {
+          // tslint:disable-next-line: one-variable-per-declaration
+          // tslint:disable-next-line: prefer-const
+          // tslint:disable-next-line: one-variable-per-declaration
+          let text = d3.select(this),
+              words = text.text().split('  ').reverse(),
+              word,
+              line = [],
+              x = text.attr('x'),
+              y = text.attr('y'),
+              dy = parseFloat(text.attr('dy')),
+              tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+          while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(' '));
+            if (tspan.node().getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(' '));
+              line = [word];
+              const shouldAddLineBreak = word.split('.').length > 1;
+              console.log(word, shouldAddLineBreak);
+              if (shouldAddLineBreak) {
+                tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy','1.3em').text(word);
+              } else {
+                tspan = text.append('tspan').attr('x', x).attr('y', y).text(word);
+
+              }
+            }
+          }
+        });
       }
     }
   }
