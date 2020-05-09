@@ -2,12 +2,12 @@
   "name": "dep-graph-server",
   "version": "1.0.0",
   "description": "depdency graph project server",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js",
-    "test": "jest",
-    "debug": "node --inspect index.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "test": "jest --detectOpenHandles",
+    "debug": "node --inspect server.js"
   },
   "author": "Saif Abu Saleh",
   "license": "ISC",
