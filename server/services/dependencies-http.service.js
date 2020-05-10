@@ -26,7 +26,7 @@ function getErrorMessage(error) {
       errorMessage = 'package not found!';
     }
   } else {
-    errorMessage = 'Failed to parse results from API';
+    errorMessage = `Failed to parse results from API message: ${error.message} url: ${error.config.url}`;
   }
   return errorMessage;
 }
