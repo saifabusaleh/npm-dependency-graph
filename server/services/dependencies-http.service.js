@@ -33,21 +33,20 @@ function getErrorMessage(error) {
 
 function handleError(error) {
   const errorMessage = getErrorMessage(error);
-  throw new Error(errorMessage);
+  console.log(errorMessage);
 }
 
 async function getPackageAvailableVersions(pkgName) {
   const pkg = new Package(pkgName, '');
   const requestUrl = buildRequestUrl(pkg);
-  let availableVersions;
   try {
     const res = await axios.get(requestUrl);
     const versionsObj = res.data.versions;
-    availableVersions = Object.keys(versionsObj);
+    return Object.keys(versionsObj);
   } catch (err) {
     handleError(err);
+    return [];
   }
-  return availableVersions;
 }
 
 
@@ -86,17 +85,16 @@ async function parsePackageDependencies(dependenciesObject) {
 
 async function getPackageDependencies(pkg) {
   const requestUrl = buildRequestUrl(pkg);
-  let pkgDeps;
   try {
     const axiosRes = await axios.get(requestUrl);
-    pkgDeps = await parsePackageDependencies(axiosRes.data.dependencies);
+    return await parsePackageDependencies(axiosRes.data.dependencies);
   } catch (err) {
     if (err.response && err.response.data && err.response.data.code && err.response.data.code === ErrorCodes.METHOD_NOT_ALLOWED) {
       return [];
     }
     handleError(err);
+    return [];
   }
-  return pkgDeps;
 }
 
 module.exports.getPackageDependencies = getPackageDependencies;
