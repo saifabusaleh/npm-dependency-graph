@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { throwError, of } from 'rxjs';
 import { Package } from 'src/app/types/package';
 import { DependencyTree } from 'src/app/types/dependency-tree';
+import { DependencyAPIResponse } from 'src/app/types/dependency-api-response';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const ToastrStub = {
   error(msg): void { //
@@ -32,7 +34,8 @@ describe('DependenciesTreeComponent', () => {
       imports: [ReactiveFormsModule,
         MatInputModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterTestingModule
       ],
       declarations: [DependenciesTreeComponent,
         DependenciesInputComponent,
@@ -57,7 +60,7 @@ describe('DependenciesTreeComponent', () => {
 
   describe('getPackageDependencies', () => {
     const createDummyDependencyTree = () => {
-      let dummyDepTree = new DependencyTree();
+      const dummyDepTree = new DependencyTree();
       dummyDepTree.package = new Package('root', '1.0');
       dummyDepTree.dependencies = [];
       dummyDepTree.dependencies[0] = new DependencyTree();
@@ -69,23 +72,30 @@ describe('DependenciesTreeComponent', () => {
       return dummyDepTree;
     };
 
+    const createDummyAPIResponse = () => {
+      const apiRes =  new DependencyAPIResponse();
+      apiRes.tree = createDummyDependencyTree();
+      apiRes.size = 3;
+      return apiRes;
+    };
+
     it('should call build tree after getting package dependencies', inject(
       [HttpService],
       (httpService: HttpService) => {
-        const depTree = createDummyDependencyTree();
-        const pkgName: string = 'file-system';
+        const depResp = createDummyAPIResponse();
+        const pkgName = 'file-system';
         spyOn(component.treeChartComponent, 'buildTree');
-        spyOn(httpService, 'getPackageDependecies').and.returnValue(of(depTree));
+        spyOn(httpService, 'getPackageDependecies').and.returnValue(of(depResp));
         component.getPackageDependencies(pkgName);
         expect(httpService.getPackageDependecies).toHaveBeenCalledWith(pkgName);
-        expect(component.treeChartComponent.buildTree).toHaveBeenCalledWith(depTree);
+        expect(component.treeChartComponent.buildTree).toHaveBeenCalledWith(depResp);
       }));
 
 
     it('should not call build tree when failed to get package', inject(
       [HttpService],
       (httpService: HttpService) => {
-        const pkgName: string = 'file-system';
+        const pkgName = 'file-system';
         spyOn(httpService, 'getPackageDependecies').and.returnValue(throwError('error'));
         spyOn(component.treeChartComponent, 'buildTree');
         component.getPackageDependencies(pkgName);

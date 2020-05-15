@@ -19,8 +19,8 @@ export class DependenciesInputComponent implements OnInit {
   @Output() submitEvent = new EventEmitter<string>();
   InputsForm = new FormGroup({});
   constructor(private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute) {
+              private router: Router,
+              private route: ActivatedRoute) {
     //
   }
 
@@ -48,7 +48,6 @@ export class DependenciesInputComponent implements OnInit {
         this.InputsForm.patchValue({
           packageName: pkgName
         });
-        this.submitEvent.emit(pkgName);
       });
   }
 

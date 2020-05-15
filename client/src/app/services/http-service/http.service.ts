@@ -20,22 +20,17 @@ export class HttpService {
   constructor(private httpClient: HttpClient,
               private toaster: ToastrService) { }
 
-  private buildRequestUrl(pkg: Package) {
-    let pkgUrlSuffix;
-    if (pkg.version) {
-      pkgUrlSuffix = `${pkg.name}/${pkg.version}`;
-    } else {
-      pkgUrlSuffix = `${pkg.name}`;
-    }
+  private buildRequestUrl() {
+
     const baseUrl: string = environment.production ? this.BASE_URL_PROD : this.BASE_URL;
-    return `${baseUrl}${pkgUrlSuffix}`;
+    return baseUrl;
   }
 
   public getPackageDependecies(pkgName: string): Observable<DependencyAPIResponse> {
     const pkg = new Package(pkgName, '');
-    const requestUrl = this.buildRequestUrl(pkg);
+    const requestUrl = this.buildRequestUrl();
     return new Observable(observer$ => {
-      this.httpClient.get(requestUrl).pipe(timeout(this.MINUTE_IN_MILLISECOND))
+      this.httpClient.post(requestUrl, {packageName: pkg.name})
         .subscribe((response: DependencyAPIResponse) => {
           try {
             observer$.next(response);

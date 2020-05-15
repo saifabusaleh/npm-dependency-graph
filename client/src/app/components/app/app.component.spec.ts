@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrService } from 'ngx-toastr';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const ToastrStub = {
   error(msg): void { //
@@ -21,7 +22,8 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         MatInputModule,
         MatButtonModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule
       ],
       declarations: [
         AppComponent,

@@ -9,7 +9,7 @@ dependenciesRetrieverRoute.route('/').get((req, res) => {
   res.send('<h1>Server root</h1>');
 });
 
-dependenciesRetrieverRoute.route('/npm-depency-retriever/:pkgName').get(
+dependenciesRetrieverRoute.route('/npm-depency-retriever').post(
   DependencyRetrieverController.getPackageDependencies,
 );
 module.exports = dependenciesRetrieverRoute;

@@ -15,8 +15,8 @@ describe('DependencyManagerService', () => {
       const depTree = new DependencyTree();
       const pkgDeps = await dependencyManagerService
         .getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
-      expect(pkgDeps.package).toEqual(pkg);
-      expect(pkgDeps.dependencies).toEqual(pkgDependencyTree);
+      expect(pkgDeps.tree.package).toEqual(pkg);
+      expect(pkgDeps.tree.dependencies).toEqual(pkgDependencyTree);
 
       done();
     });
@@ -29,8 +29,8 @@ describe('DependencyManagerService', () => {
       jest.spyOn(dependencyHttpService, 'getPackageDependencies').mockReturnValue([]);
       const pkgDeps = await dependencyManagerService
         .getPackageDependenciesRecursively(pkg, depTree, pkgToPkgDepsCache);
-      expect(pkgDeps.package).toEqual(pkg);
-      expect(pkgDeps.dependencies).toEqual([]);
+      expect(pkgDeps.tree.package).toEqual(pkg);
+      expect(pkgDeps.tree.dependencies).toEqual([]);
       expect(pkgToPkgDepsCache.get('file-system2.0.1')).toEqual([]);
       done();
     });

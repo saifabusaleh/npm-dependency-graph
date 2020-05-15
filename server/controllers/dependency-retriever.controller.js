@@ -8,9 +8,9 @@ function sendErrorResponse(res, err) {
 }
 
 async function getPackageDependencies(req, res) {
-  const { pkgName } = req.params;
+  const { packageName } = req.body;
   try {
-    const pkgs = await DependencyManagerService.getPackageDependencies(pkgName);
+    const pkgs = await DependencyManagerService.getPackageDependencies(packageName);
     res.json(pkgs);
   } catch (err) {
     sendErrorResponse(res, err);

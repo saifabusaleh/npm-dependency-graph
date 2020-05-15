@@ -19,7 +19,7 @@ describe('DependencyRetriever tests', () => {
     it('should return depending to getPackageDependencies result', async (done) => {
       jest.spyOn(dependencyManagerService, 'getPackageDependencies')
         .mockReturnValue(dependenciesResponse.dependencies);
-      const res = await request.get('/api/npm-depency-retriever/file-system');
+      const res = await request.post('/api/npm-depency-retriever').send({ packageName: 'file-system' });
       expect(res.status).toBe(200);
       expect(res.body).toEqual(dependenciesResponse.dependencies);
       done();
@@ -27,7 +27,7 @@ describe('DependencyRetriever tests', () => {
 
     it('should call getPackageDependencies with correct parameters', async (done) => {
       const spy = jest.spyOn(dependencyManagerService, 'getPackageDependencies');
-      const res = await request.get('/api/npm-depency-retriever/file-system');
+      const res = await request.post('/api/npm-depency-retriever').send({ packageName: 'file-system' });
       expect(spy).toHaveBeenCalledWith('file-system');
       expect(res.status).toBe(200);
       done();
