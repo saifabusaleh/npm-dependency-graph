@@ -13,6 +13,7 @@ import { TreeChartComponent } from './components/tree-chart/tree-chart.component
 import { DependenciesTreeComponent } from './components/npm-dependencies-tree/npm-dependencies-tree.component';
 import { DependenciesInputComponent } from './components/dependencies-input/dependencies-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
