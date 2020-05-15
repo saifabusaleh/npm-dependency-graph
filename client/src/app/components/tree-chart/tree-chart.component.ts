@@ -50,9 +50,10 @@ export class TreeChartComponent implements OnInit {
     const treeMap = d3.tree().size([this.height - this.margin.top - this.margin.bottom, this.width - this.margin.left - this.margin.right]);
 
     // Assigns parent, children, height, depth
-    const root = d3.hierarchy(response.tree, function(d) { return d.dependencies; });
+    const root = d3.hierarchy(response.tree, (d) => d.dependencies);
     let  i = 0;
-    let duration: any;
+    // tslint:disable-next-line: prefer-const
+    let duration;
 
     root.x0 = this.height / 2;
     root.y0 = 0;
@@ -68,18 +69,18 @@ export class TreeChartComponent implements OnInit {
       const links = treeData.descendants().slice(1);
 
       // Normalize for fixed-depth.
-      nodes.forEach(function(d) { d.y = d.depth * 180; });
+      nodes.forEach((d) => { d.y = d.depth * 180; });
 
       // ****************** Nodes section ***************************
 
       // Update the nodes...
       const node = svg.selectAll('g.node')
-        .data(nodes, function(d) { return d.id || (d.id = ++i); });
+        .data(nodes, (d)  => d.id || (d.id = ++i));
 
       // Enter any new modes at the parent's previous position.
       const nodeEnter = node.enter().append('g')
         .attr('class', 'node')
-        .attr('transform', function(d) {
+        .attr('transform', (d)  =>  {
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
         .on('click', click);
@@ -88,20 +89,20 @@ export class TreeChartComponent implements OnInit {
       nodeEnter.append('circle')
         .attr('class', 'node')
         .attr('r', 1e-15)
-        .style('fill', function(d) {
+        .style('fill', (d) => {
           return d._children ? 'lightsteelblue' : '#fff';
         });
 
       // Add labels for the nodes
       nodeEnter.append('text')
         .attr('dy', '.35em')
-        .attr('x', function(d) {
+        .attr('x', (d) => {
           return d.children || d._children ? -13 : 13;
         })
-        .attr('text-anchor', function(d) {
+        .attr('text-anchor', (d) => {
           return d.children || d._children ? 'end' : 'start';
         })
-        .text(function(d) { return d.data.package.name + '  ' + d.data.package.version; })
+        .text((d) => d.data.package.name + '  ' + d.data.package.version)
         .style('font-size', response.size < 40 ? '13px' : '11px');
       //  .call(wrap, 50);
       // UPDATE
@@ -110,14 +111,14 @@ export class TreeChartComponent implements OnInit {
       // Transition to the proper position for the node
       nodeUpdate.transition()
         .duration(duration)
-        .attr('transform', function(d) {
+        .attr('transform', (d) => {
           return 'translate(' + d.y + ',' + d.x + ')';
         });
 
       // Update the node attributes and style
       nodeUpdate.select('circle.node')
         .attr('r', 1)
-        .style('fill', function(d) {
+        .style('fill', (d) => {
           return d._children ? 'lightsteelblue' : '#fff';
         })
         .attr('cursor', 'pointer');
@@ -126,7 +127,7 @@ export class TreeChartComponent implements OnInit {
       // Remove any exiting nodes
       const nodeExit = node.exit().transition()
         .duration(duration)
-        .attr('transform', function(d) {
+        .attr('transform', (d) => {
           return 'translate(' + source.y + ',' + source.x + ')';
         })
         .remove();
@@ -143,12 +144,12 @@ export class TreeChartComponent implements OnInit {
 
       // Update the links...
       const link = svg.selectAll('path.link')
-        .data(links, function(d) { return d.id; });
+        .data(links, (d) => d.id);
 
       // Enter any new links at the parent's previous position.
       const linkEnter = link.enter().insert('path', 'g')
         .attr('class', 'link')
-        .attr('d', function(d) {
+        .attr('d', (d)  =>  {
           const o = { x: source.x0, y: source.y0 };
           return diagonal(o, o);
         });
@@ -159,18 +160,18 @@ export class TreeChartComponent implements OnInit {
       // Transition back to the parent element position
       linkUpdate.transition()
         .duration(duration)
-        .attr('d', function(d) { return diagonal(d, d.parent); });
+        .attr('d', (d)  => diagonal(d, d.parent));
 
       // Remove any exiting links
       const linkExit = link.exit().transition()
         .duration(duration)
-        .attr('d', function(d) {
+        .attr('d', (d)  => {
           const o = { x: source.x, y: source.y };
           return diagonal(o, o);
         }).remove();
 
       // Store the old positions for transition.
-      nodes.forEach(function(d) {
+      nodes.forEach((d)  =>  {
         d.x0 = d.x;
         d.y0 = d.y;
       });
@@ -197,38 +198,6 @@ export class TreeChartComponent implements OnInit {
         }
         update(d);
       }
-
-      // function wrap(text, width) {
-      //   text.each(function() {
-      //     // tslint:disable-next-line: one-variable-per-declaration
-      //     // tslint:disable-next-line: prefer-const
-      //     // tslint:disable-next-line: one-variable-per-declaration
-      //     let text = d3.select(this),
-      //         words = text.text().split('  ').reverse(),
-      //         word,
-      //         line = [],
-      //         x = text.attr('x'),
-      //         y = text.attr('y'),
-      //         dy = parseFloat(text.attr('dy')),
-      //         tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
-      //     while (word = words.pop()) {
-      //       line.push(word);
-      //       tspan.text(line.join(' '));
-      //       if (tspan.node().getComputedTextLength() > width) {
-      //         line.pop();
-      //         tspan.text(line.join(' '));
-      //         line = [word];
-      //         const shouldAddLineBreak = word.split('.').length > 1;
-      //         if (shouldAddLineBreak) {
-      //           tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy','1.3em').text(word);
-      //         } else {
-      //           tspan = text.append('tspan').attr('x', x).attr('y', y).text(word);
-
-      //         }
-      //       }
-      //     }
-      //   });
-      // }
     }
   }
 }
