@@ -21,9 +21,8 @@ Project to show npm package dependencies graph with D3 tree.
 the dependency is found, its returned from the cache.
 
 **Notes**:
-* For simplicity if the package version that fetched from the npm registry contains (>,<,~,=) characters, it got deleted.
 
-* If a package contains both > and <, or | or - it will not work.
+* For simplicity Package versions that contains `>`, `<`, `|`, `-` is not supported.
 
 * For simplicity dependencies under devDependencies is not included in the graph.
 
