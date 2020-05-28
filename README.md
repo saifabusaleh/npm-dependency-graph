@@ -4,14 +4,14 @@ Demo: http://serene-tor-26385.herokuapp.com/
 
 Project to show npm package dependencies graph with D3 tree.
 
-**Getting Started**:
+## Getting Started
  * To start the client side run `npm run start:dev`
  * To run the tests in client side run `npm run test`
  
  * To start the server side run `npm run watch`
  * To run the tests in server side run `npm run jest`
  
-**Features**:
+## Features
 * Visualize npm package dependencies with tree.
 * Input form validations.
 * Spinner when loading data.
