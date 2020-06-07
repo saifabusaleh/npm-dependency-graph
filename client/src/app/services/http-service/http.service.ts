@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Package } from '../../types/package';
 import { Observable } from 'rxjs';
-import {  timeout } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { DependencyAPIResponse } from 'src/app/types/dependency-api-response';
@@ -16,7 +15,6 @@ export class HttpService {
 
   private readonly BASE_URL_PROD: string = 'api/npm-depency-retriever/';
 
-  private readonly MINUTE_IN_MILLISECOND = 60000;
   constructor(private httpClient: HttpClient,
               private toaster: ToastrService) { }
 
