@@ -26,7 +26,7 @@ the dependency is found, its returned from the cache.
 
 * For simplicity dependencies under devDependencies is not included in the graph.
 
-Images:
+## Images
 
 <img src="images/1.PNG" alt="img1" height="200">
 
